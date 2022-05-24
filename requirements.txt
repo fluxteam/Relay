@@ -1,0 +1,24 @@
+pydantic==1.9.0
+snowflake.py==1.0.0
+python-dotenv==0.19.2
+pymongo==4.0.1
+rtoml==0.7.1
+
+# Web
+orjson==3.6.4
+sanic==21.12.1
+jinja2==3.0.2
+cryptography
+httpx==0.20.0
+pyyaml
+
+# Hikari
+hikari[speedups]==2.0.0.dev105
+
+# Socket.IO
+python-engineio==4.3.1
+python-socketio[asyncio_client]==5.5.0
+
+
+https://github.com/ysfchn/pyconduit/archive/rewrite.zip
+https://relay-packages.pages.dev/extras/relay_packages_python-0.0.1-py3-none-any.whl

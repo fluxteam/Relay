@@ -1,0 +1,298 @@
+[strings.common]
+cancel = "Cancel"
+install = "Install"
+uninstall = "Uninstall"
+update = "Update"
+repair = "Repair"
+disable = "Disable"
+enable = "Enable"
+author = "Author"
+repository = "Repository"
+latest = "Latest"
+current = "Current"
+creation_date = "Creation Date"
+unspecified = "Unspecified"
+soon = "Soon"
+features = "Features"
+version = "Version"
+go = "Go"
+ok = "OK"
+string = "String"
+number = "Number"
+boolean = "Boolean"
+channel = "Channel"
+role = "Role"
+choice = "Choice"
+mapping = "Mapping"
+list = "List"
+none = "None"
+empty = "Empty"
+try_again = "Try Again"
+verified = "Verified"
+edit = "Edit"
+delete = "Delete"
+create = "Create"
+unnamed = "Unnamed"
+id = "ID"
+beta = "Beta"
+true = "True"
+false = "False"
+documentation = "Documentation"
+export = "Export"
+save = "Save"
+settings = "Settings"
+info = "Info"
+description = "Description"
+link = "Link"
+name = "Name"
+learn_more = "Learn more"
+launch_workspace = "Launch Workspace"
+next = "Next"
+close = "Close"
+previous = "Previous"
+help = "Help"
+continue = "Continue"
+invite = "Invite"
+launch = "Launch"
+size = "Size"
+flag = "Report"
+
+
+[strings.actions]
+workspace_description = "Click the button to go to your server-specific workspace."
+auto_scroll = "Auto scroll on"
+manual_scroll = "Manual scroll on"
+log_clear = "Clear logs"
+log_state_empty_title = "No logs"
+log_state_empty_text = "When your action is executed, we will add a log here to inform you of what happened."
+log_error_block = "ERROR"
+log_success_block = "SUCCESS"
+log_info_block = "INFO"
+change_server = "Change server"
+servers = "Servers"
+user_joined = "{0} joined"
+user_left = "{0} left"
+participants = "Participants"
+error_socket_disconnected = "Connection lost. Do not leave the page to avoid data loss."
+socket_connected = "Connection has established."
+synced_blocks = "Blocks synced with other users."
+error_discord_commands = "Application commands couldn't register to Discord. (probably due to rate limits)"
+
+
+[strings.log]
+action_edited = 'Action named "{0}" (`{1}`) has **edited** by "{2}" (`{3}`).'
+action_deleted = 'Action named "{0}" (`{1}`) has **deleted** by "{2}" (`{3}`).'
+
+
+[strings.package]
+edit_installation = "Edit Installation"
+create_package = "Learn how to create your own package"
+timeout = "Timeout"
+incognito = "Can't manage in incognito"
+installation = "Open the link in your browser to set up the package settings."
+uninstalled_info = "`{0}` has been successfully removed from the server."
+install_params = "Parameters that provided when installing the package:"
+
+
+[strings.error.missing_permissions]
+title = "Missing permissions"
+description = "You need to have required permissions to perform this action."
+
+[strings.error.package_not_found]
+title = "Package not found"
+description = "No package found named `{0}`."
+
+[strings.error.invalid_server]
+title = "Unknown server"
+description = "There is no such server, Relay has not been added to the server or you are not on this server."
+
+[strings.error.not_authorized]
+title = "Not authorized"
+description = "You need to login first to perform this action."
+
+[strings.error.managed_action]
+title = "Can't manage"
+description = "This action is managed by one of installed Relay Packages, so you can't edit manually."
+
+[strings.error.unexpected_error]
+title = "Unknown error"
+description = "We don't know what happened."
+
+[strings.error.invalid_source]
+title = "Invalid source"
+description = "The source cannot be found, source files are invalid or is unreachable because it is hidden."
+
+
+[strings.web]
+no_script = "Please enable your JavaScript. This site cannot work without JavaScript."
+browser_not_supported = "This browser is not supported. Please update or change your browser."
+something_wrong = "There are some things going wrong:"
+missing_required_value = "{0} is required."
+has_no_item = "{0} needs to have at least one item."
+invalid_value = "{0} has a invalid value."
+value_too_long = "{0} has a long value (> 300)."
+done = "Done!"
+oops = "Oops"
+not_you = "Not you?"
+installing_on = "Target server"
+required_parameter = "Required"
+completed = "The operation completed successfully, now you can close the page."
+action_title = "Action name"
+action_description = "Add a description for this action..."
+action_saved = "Action has saved successfully!"
+package_installed_already = "This package is already installed on the server."
+custom_value_title = "Custom value"
+custom_value_description_1 = "Custom values allow you to create new values within the value and set the desired type to the value."
+custom_value_description_2 = "If you choose one of the following value types, the previous value and everything inside the value will be deleted."
+custom_value_link = "You can visit here to learn about custom values."
+save_starting = "Saving..."
+save_done = "Saved!"
+save_error = "Failed!"
+switch_account = "Switch account"
+sign_in = "Login"
+select_server = "Select server"
+webhook_copied = "Copied webhook URL."
+id_copied = "Copied workflow ID."
+not_eligible = "Not eligible"
+all_parameters = "All"
+only_required = "Required"
+invite = "Relay not invited to your server?"
+install_overview = """\
+    Add new features and commands to Relay on your own server by installing this package. \
+    Choose a server that Relay was invited and you have permissions to install the package.
+    """
+overview_intro = """\
+    Have your own programmable bot with Relay. Install published packages by people
+    like this package to your server with a few clicks.
+    """
+overview_intro_tos = "Terms of Service" # unused
+overview_intro_pyp = "Privacy Policy" # unused
+blocks_selected = "{0} block(s) selected. Click to export."
+report_title = "Report package: {0}"
+report_body = "You can include additional details here."
+report_package_name = "Package name"
+report_package_version = "Package version"
+report_language = "Language"
+progress_stage_1 = "Connecting..."
+progress_stage_2 = "Creating workspace..."
+progress_stage_3 = "Polishing..."
+settings_saved = "Settings has saved successfully!"
+exit_prompt = "You have unsaved changes, are you sure that you want to leave?"
+progress_failed = "Failed to connect. Please try again."
+start_tutorial = "Start tutorial"
+no_thanks = "No, thanks"
+corrupted_blocks = "Blocks has corrupted. Contact for more information."
+
+
+[strings.web.oauth]
+no_redirect = "No redirect URL has specified."
+cancelled = "Authorization was canceled."
+missing_identifier = "The identifier is missing in the request headers."
+tampering_detected = "URL tampering detected."
+error_exchange = "An unknown error occurred while exchanging token."
+
+
+[strings.changelog.splash]
+title = "Welcome to Relay!"
+description = "Introducing a bot allows you to do anything when anything happens. This is Relay. Let's explore how to get started with Relay in few steps."
+
+[strings.changelog.no_code]
+title = "No-code means no-hassle"
+description = "This is your workspace, you can create actions by dragging and dropping and connecting blocks. We are converting blocks to code in the background, so don't worry about that."
+
+[strings.changelog.collab]
+title = "Work together"
+description = "See other users' edits in real time! Your changes are shared with other users on the same workspace. Their changes also appear on your screen."
+
+[strings.changelog.new]
+title = "See what's new!"
+description = "We added some features while you are not around, let's explore the changes and new features!"
+
+[strings.changelog.interactions]
+title = "Next level is: Interactions"
+description = "Relay fully supports Interaction features including Message Components, Context Menus and Slash Commands! As always, you can just use the blocks to get started."
+
+[strings.changelog.deploy]
+title = "Share your blocks"
+description = "You can export your blocks and upload them to your GitHub repositories, then add a Relay button so other people can add blocks from your own repository. And without setting up anything."
+
+[strings.changelog.save]
+title = "Changes, instantly"
+description = "When you save what you've done, you'll see these changes instantly in the Relay. If you added a block incorrectly or made a typo, you can save it over and over as many times as you want."
+
+[strings.changelog.debug]
+title = "Debugging made easy"
+description = "Your blocks may result in errors from time to time. In such a case, it is very easy to find out why it gives an error. Right-click on a listener and open logs. Stay up to date with what's going on live."
+
+[strings.changelog.definitions]
+title = "Loops and Functions"
+description = "You can create \"Function\" to avoid duplicate code and use \"Global variable\" to store values that will persist in other workflows. Both can be found in the \"Definitions\" category."
+
+[strings.changelog.finish]
+title = "You're all set!"
+description = "Now you are ready to use Relay. We will inform you when we release anything new. Note that some features may contain bugs and don't forget to report them!"
+
+[strings.changelog.log_upgrade]
+title = "Upgraded logs"
+description = "Log viewers no longer establish a new connection, they use the existing one. Also, logs are now shown to everyone who is currently connected, instead of only showing up for one person at a time."
+media = "/assets/static/intro8.mp4"
+
+[strings.changelog.loop_block]
+title = "Loop block"
+description = "Repeats more than one job as many times as the number of elements in the specified list. Use the \"loop element\" block to get the element inside a running loop."
+
+
+[strings.settings.appearance]
+title = "Appearance"
+
+[strings.settings.appearance.hide_grid]
+title = "Hide grid"
+description = "Hide the dotted grid that appears in background of the workspace."
+
+[strings.settings.appearance.snap_grid]
+title = "Snap to grid"
+description = "Aligns blocks to the grid. For this setting to work properly, the grid must be enabled first."
+
+[strings.settings.appearance.renderer]
+title = "Block renderer"
+description = "Change the renderer that controls how blocks appear on the screen. In short, it changes the way blocks look."
+items = { thrasos = "Default", geras = "Blockly", zelos = "Scratch" }
+
+[strings.settings.appearance.horizontal]
+title = "Horizontal categories"
+description = "Instead of showing the categories vertically on the left, put the categories horizontally at the bottom of the screen. Ideal for displays that their width is smaller than their height. (i.e. phones)."
+
+[strings.settings.behavior]
+title = "Behavior"
+
+[strings.settings.behavior.warnings]
+title = "Enable warnings"
+description = "Show warnings on blocks for possible wrong actions to avoid common mistakes."
+
+[strings.settings.behavior.enable_sounds]
+title = "Enable sounds"
+description = "Play sound on actions such as connecting or deleting blocks are performed."
+
+[strings.settings.behavior.keep_toolbox_open]
+title = "Keep toolbox open"
+description = "Keep the block drawer open when adding a new block to the workspace. It can be useful if you don't want to open categories every time."
+
+[strings.settings.behavior.advanced_blocks]
+title = "Advanced blocks"
+description = "Shows additional blocks that the average user doesn't need, but can be useful to developers. Existing blocks added to the workspace are not affected by this setting."
+
+[strings.settings.behavior.zoom_with_wheel]
+title = "Zoom in/out with mouse wheel"
+description = "Use the mouse wheel to zoom in or out on the workspace, not to scroll up or down."
+
+[strings.settings.behavior.finished_tutorial]
+title = "Mark tutorial as completed"
+description = "Toggles the tutorial shown for first-time users of the Relay. This setting is automatically marked when you complete or skip the tutorial. However, you can turn it off and trigger the tutorial again."
+
+[strings.settings.other]
+title = "Other"
+
+[strings.settings.other.predisposition]
+title = "Group of predisposition"
+description = "While not completely proven, experts say each group may have different powers. We do not have a current list of these 'powers' as they may have changed even now."
+items = { 0 = "Amethyst", 1 = "Roselite", 2 = "Galaxite" }

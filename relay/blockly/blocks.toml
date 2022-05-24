@@ -1,0 +1,485 @@
+# Defined blocks will appear in categories on the top of the other blocks.
+# There are also unbound blocks which is added to categories manually by config.toml.
+#
+# Refer here to learn about Blockly format.
+# https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks
+# As TOML doesn't have None/null values, you can simply input "" (empty string) for null values,
+# looks like Blockly accepts them too.
+
+[[WORKFLOW]]
+type = "WORKFLOW_IF"
+message0 = "%{BKY_BLOCK_WORKFLOW_IF} %1 %2"
+args0 = [
+    { type = "input_value", name = "condition", align = "CENTRE" },
+    { type = "input_statement", name = "do", align = "RIGHT", check = "Block" }
+]
+previousStatement = "Block"
+nextStatement = "Block"
+style = "workflow_blocks"
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_IF}"
+helpUrl = ""
+
+[[WORKFLOW]]
+type = "WORKFLOW_IF_ELSE"
+message0 = "%{BKY_BLOCK_WORKFLOW_IF} %1 %2 %{BKY_BLOCK_WORKFLOW_IF_ELSE} %3"
+args0 = [
+    { type = "input_value", name = "condition", align = "LEFT" },
+    { type = "input_statement", name = "do", align = "RIGHT", check = "Block" },
+    { type = "input_statement", name = "else", align = "RIGHT", check = "Block" }
+]
+previousStatement = "Block"
+nextStatement = "Block"
+style = "workflow_blocks"
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_IF_ELSE}"
+helpUrl = ""
+
+[[WORKFLOW]]
+type = "WORKFLOW_LOOP_FOR_EACH"
+message0 = "%{BKY_BLOCK_WORKFLOW_LOOP_FOR_EACH} %1 %2 %3"
+args0 = [
+    { type = "field_event_parameter_flydown", name = "item" },
+    { type = "input_value", name = "iterable", align = "RIGHT" },
+    { type = "input_statement", name = "do", align = "RIGHT", check = "Block" }
+]
+previousStatement = "Block"
+nextStatement = "Block"
+style = "workflow_blocks"
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_LOOP_FOR_EACH}"
+helpUrl = ""
+extensions = ["build_setter_getter"]
+
+[[WORKFLOW]]
+type = "WORKFLOW_DUMMY"
+message0 = "%{BKY_BLOCK_WORKFLOW_DUMMY} %1"
+args0 = [
+    { type = "input_value", name = "value", align = "RIGHT" }
+]
+previousStatement = "Block"
+nextStatement = "Block"
+style = "workflow_blocks"
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_DUMMY}"
+helpUrl = ""
+
+[[WORKFLOW]]
+type = "WORKFLOW_EVENT_LISTENER"
+message0 = "%1 %2 %{BKY_BLOCK_WORKFLOW_EVENT_LISTENER} %3 %4 %5 %6"
+args0 = [
+    { type = "field_image", src = "/assets/static/icon_gateway_events.svg", height = 20, width = 20, alt = "", flipRtl = false },
+    { type = "field_dropdown", name = "event", options = [["-", "-"]] },
+    { type = "input_dummy" },
+    { type = "field_event_parameter_flydown", name = "parameter" },
+    { type = "input_dummy" },
+    { type = "input_statement", name = "value", check = "Block" }
+]
+style = "workflow_blocks"
+inputsInline = false
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_EVENT_LISTENER}"
+helpUrl = ""
+extensions = ["event_help_builder", "prefill_event_dropdown", "build_setter_getter"]
+
+[[WORKFLOW]]
+type = "WORKFLOW_SLASH_LISTENER"
+message0 = "%1 %2 %{BKY_BLOCK_WORKFLOW_SLASH_LISTENER} %3 %4 %5 %{BKY_FIELD_WORKFLOW_PARAMS} %6 %{BKY_FIELD_WORKFLOW_DO} %7"
+args0 = [
+    { type = "field_image", src = "/assets/static/icon_slash_commands.svg", height = 20, width = 20, alt = "", flipRtl = false },
+    { type = "field_input", name = "name", text = "%{BKY_VALUE_PLACEHOLDER_SLASH_NAME}" },
+    { type = "input_dummy" },
+    { type = "field_event_parameter_flydown", name = "interaction" },
+    { type = "input_dummy" },
+    { type = "input_statement", name = "params", check = ["SlashParameter", "CommandTranslation"], align = "RIGHT" },
+    { type = "input_statement", name = "value", align = "RIGHT", check = "Block" }
+]
+style = "workflow_blocks"
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_SLASH_LISTENER}"
+helpUrl = ""
+extensions = ["event_help_builder", "build_setter_getter"]
+
+[[WORKFLOW]]
+type = "WORKFLOW_WEBHOOK_LISTENER"
+message0 = "%1 %{BKY_BLOCK_WORKFLOW_WEBHOOK_LISTENER} %2 %3 %4 %5"
+args0 = [
+    { type = "field_image", src = "/assets/static/webhook_white_24dp.svg", height = 20, width = 20, alt = "", flipRtl = false },
+    { type = "input_dummy" },
+    { type = "field_event_parameter_flydown", name = "data" },
+    { type = "input_dummy" },
+    { type = "input_statement", name = "value", check = "Block" }
+]
+style = "workflow_blocks"
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_WEBHOOK_LISTENER}"
+helpUrl = ""
+extensions = ["event_help_builder", "build_setter_getter"]
+
+[[WORKFLOW]]
+type = "WORKFLOW_CONTEXT_LISTENER"
+message0 = "%1 %2 %3 %{BKY_BLOCK_WORKFLOW_CONTEXT_LISTENER} %4 %5 %6 %7"
+args0 = [
+    { type = "field_image", src = "/assets/static/icon_context_menus.svg", height = 20, width = 20, alt = "", flipRtl = false },
+    { type = "field_dropdown", name = "type", options = [["%{BKY_VALUE_CONTEXT_USER}", "USER"], ["%{BKY_VALUE_CONTEXT_MESSAGE}", "MESSAGE"]] },
+    { type = "field_input", name = "name", text = "%{BKY_VALUE_PLACEHOLDER_CONTEXT_NAME}" },
+    { type = "input_dummy" },
+    { type = "field_event_parameter_flydown", name = "interaction" },
+    { type = "input_dummy" },
+    { type = "input_statement", name = "value", check = "Block" }
+]
+style = "workflow_blocks"
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_CONTEXT_LISTENER}"
+helpUrl = ""
+extensions = ["event_help_builder", "build_setter_getter"]
+
+[[WORKFLOW]]
+type = "WORKFLOW_MODAL_LISTENER"
+message0 = "%1 %2 %{BKY_BLOCK_WORKFLOW_MODAL_LISTENER} %3 %4"
+args0 = [
+    { type = "field_image", src = "/assets/static/icon_components.svg", height = 20, width = 20, alt = "", flipRtl = false },
+    { type = "field_input", name = "id", text = "%{BKY_VALUE_ID}" },
+    { type = "input_dummy" },
+    { type = "input_statement", name = "value", check = "Block" }
+]
+style = "workflow_blocks"
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_MODAL_LISTENER}"
+helpUrl = ""
+extensions = ["event_help_builder"]
+
+[[WORKFLOW]]
+type = "WORKFLOW_COMPONENT_LISTENER"
+message0 = "%1 %2 %{BKY_BLOCK_WORKFLOW_COMPONENT_LISTENER} %3 %4"
+args0 = [
+    { type = "field_image", src = "/assets/static/icon_components.svg", height = 20, width = 20, alt = "", flipRtl = false },
+    { type = "field_input", name = "name", text = "%{BKY_VALUE_PLACEHOLDER_SLASH_NAME}" },
+    { type = "input_dummy" },
+    { type = "input_statement", name = "value", check = "Block" }
+]
+style = "workflow_blocks"
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_COMPONENT_LISTENER}"
+helpUrl = ""
+extensions = ["event_help_builder"]
+
+[[WORKFLOW]]
+type = "WORKFLOW_SLASH_PARAMETER_TEXT"
+message0 = "%{BKY_BLOCK_WORKFLOW_SLASH_PARAMETER_TEXT} %1 %{BKY_FIELD_WORKFLOW_NAME} %2 %3 %{BKY_FIELD_WORKFLOW_DESCRIPTION} %4 %5 %{BKY_FIELD_WORKFLOW_REQUIRED} %6"
+args0 = [
+    { type = "input_dummy" },
+    { type = "field_input", name = "name", text = "%{BKY_FIELD_WORKFLOW_NAME}" },
+    { type = "input_dummy", align = "RIGHT" },
+    { type = "field_input", name = "description", text = "%{BKY_FIELD_WORKFLOW_DESCRIPTION}" },
+    { type = "input_dummy", align = "RIGHT" },
+    { type = "field_checkbox", name = "required", checked = false }
+]
+lastDummyAlign0 = "RIGHT"
+inputsInline = true
+previousStatement = ["SlashParameter", "CommandTranslation"]
+nextStatement = "SlashParameter"
+style = "workflow_blocks"
+tooltip = ""
+helpUrl = ""
+
+[[WORKFLOW]]
+type = "WORKFLOW_COMMAND_TRANSLATION"
+message0 = "%{BKY_BLOCK_WORKFLOW_COMMAND_TRANSLATION} %1 %2 %3 %4 %5 %6"
+args0 = [
+    { type = "input_dummy" },
+    { type = "field_dropdown", name = "type", options = [["%{BKY_VALUE_TRANSLATION_NAME}", "name"], ["%{BKY_VALUE_TRANSLATION_DESCRIPTION}", "description"]] },
+    { type = "input_dummy", align = "RIGHT" },
+    # >> Options are populated automatically from blockly/main.py
+    { type = "field_dropdown", name = "language", options = [] },
+    { type = "input_dummy", align = "RIGHT" },
+    { type = "field_input", name = "value", text = "%{BKY_VALUE_PLACEHOLDER_VALUE}" }
+]
+lastDummyAlign0 = "RIGHT"
+inputsInline = true
+previousStatement = "CommandTranslation"
+nextStatement = ["SlashParameter", "CommandTranslation"]
+style = "workflow_blocks"
+tooltip = ""
+helpUrl = ""
+
+[[WORKFLOW]]
+type = "WORKFLOW_EVENT_ID"
+message0 = "%{BKY_BLOCK_WORKFLOW_EVENT_ID}"
+output = "String"
+style = "workflow_blocks"
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_EVENT_ID}"
+helpUrl = ""
+
+[[WORKFLOW]]
+# TODO: Buggy block.
+type = "WORKFLOW_CUSTOM_ACTION"
+message0 = "%1 %2 %3"
+args0 = [
+    { type = "field_input", name = "action", text = "TEXT.JOIN" },
+    { type = "input_dummy", align = "RIGHT" },
+    { type = "input_value", name = "parameters", align = "RIGHT" }
+]
+style = "workflow_blocks"
+output = ""
+tooltip = "%{BKY_TOOLTIP_WORKFLOW_CUSTOM_ACTION}"
+helpUrl = ""
+
+[[WORKFLOW]]
+type = "LOGIC_STOP"
+message0 = "%{BKY_BLOCK_LOGIC_STOP}"
+previousStatement = "Block"
+colour = "#e00040"
+tooltip = "%{BKY_TOOLTIP_LOGIC_STOP}"
+helpUrl = ""
+
+[[DEFINITION]]
+type = "VARIABLE_SET"
+message0 = "%{BKY_BLOCK_VARIABLE_SET} %1 %2"
+args0 = [
+    { type = "field_variable", name = "name", variable = "%{BKY_VARIABLES_DEFAULT_NAME}", defaultType = "LOCAL", align = "RIGHT", variableTypes = ["LOCAL", "GLOBAL"] },
+    { type = "input_value", name = "value", align = "RIGHT" }
+]
+previousStatement = "Block"
+nextStatement = "Block"
+style = "variable_blocks"
+helpUrl = "%{BKY_HELP_VARIABLE_SET}"
+tooltip = ""
+
+[[DEFINITION]]
+type = "VARIABLE_GET"
+message0 = "%{BKY_BLOCK_VARIABLE_GET} %1"
+args0 = [
+    { type = "field_variable", name = "name", variable = "%{BKY_VARIABLES_DEFAULT_NAME}", defaultType = "LOCAL", align = "RIGHT", variableTypes = ["LOCAL", "GLOBAL"] }
+]
+output = ""
+style = "variable_blocks"
+helpUrl = "%{BKY_HELP_VARIABLE_GET}"
+tooltip = ""
+
+[[TEXT]]
+type = "TEXT_VALUE"
+message0 = "'%1'"
+args0 = [
+    { type = "field_input", name = "value", text = "%{BKY_VALUE_PLACEHOLDER_TEXT}", align = "RIGHT" }
+]
+style = "text_blocks"
+output = "String"
+tooltip = "Creates a new text from given input."
+helpUrl = ""
+
+[[TEXT]]
+type = "TEXT_MULTILINE_VALUE"
+message0 = "'%1'"
+args0 = [
+    { type = "field_multilinetext", name = "value", text = "%{BKY_VALUE_PLACEHOLDER_MULTILINE_TEXT}", align = "RIGHT" }
+]
+style = "text_blocks"
+output = "String"
+tooltip = "Creates a new multiline text from given input."
+helpUrl = ""
+
+[[TEXT]]
+type = "TEXT_INCLUDES_MANY"
+message0 = "%{BKY_BLOCK_TEXT_INCLUDES} %1  %{BKY_FIELD_TEXT_TEXT} %2 %{BKY_FIELD_TEXT_PIECES} %3"
+args0 = [
+    { type = "field_dropdown", name = "dynamic_action", options = [["%{BKY_VALUE_INCLUDES_ALL}", "TEXT.INCLUDES_ALL"], ["%{BKY_VALUE_INCLUDES_ANY}", "TEXT.INCLUDES_ANY"]] },
+    { type = "input_value", name = "text", align = "RIGHT" },
+    { type = "input_value", name = "pieces", align = "RIGHT", check = ["List"] }
+]
+style = "text_blocks"
+output = "Boolean"
+tooltip = "Includes any/all."
+helpUrl = ""
+
+[[TEXT]]
+type = "TEXT_JOIN"
+message0 = "%{BKY_BLOCK_TEXT_JOIN} %1 %2"
+args0 = [
+    { type = "input_value", name = "text1", align = "RIGHT" },
+    { type = "input_value", name = "text2", align = "RIGHT" }
+]
+style = "text_blocks"
+output = "String"
+tooltip = "Join multiple texts."
+helpUrl = "%{BKY_HELP_TEXT_JOIN}"
+
+[[TEXT]]
+type = "TEXT_IS_EMPTY"
+message0 = "%{BKY_BLOCK_TEXT_IS_EMPTY} %1"
+args0 = [
+    { type = "input_value", name = "text", align = "RIGHT" }
+]
+style = "text_blocks"
+output = "Boolean"
+tooltip = "Is text empty?"
+helpUrl = "%{BKY_HELP_TEXT_IS_EMPTY}"
+
+[[MATH]]
+type = "MATH_VALUE"
+message0 = "%1"
+args0 = [
+    { type = "field_number", name = "value", text = "0", align = "RIGHT" }
+]
+style = "math_blocks"
+output = "Number"
+tooltip = "Creates a new integer from given input."
+helpUrl = ""
+
+[[MATH]]
+type = "MATH_OPERATOR"
+message0 = "%1 %2 %3 %4"
+args0 = [
+    { type = "input_value", name = "value1", align = "RIGHT", check = ["Number", "String"] },
+    { type = "field_dropdown", name = "dynamic_action", options = [["+", "MATH.SUM"], ["-", "MATH.SUB"], ["/", "MATH.DIV"], ["*", "MATH.MUL"], ["**", "MATH.EXP"], ["%", "MATH.MOD"]] },
+    { type = "input_dummy", align = "RIGHT" },
+    { type = "input_value", name = "value2", align = "RIGHT", check = ["Number", "String"] }
+]
+style = "math_blocks"
+output = "Number"
+tooltip = "Apply an operation to value1 and value2."
+helpUrl = ""
+
+[[MATH]]
+type = "MATH_MAX_OR_MIN"
+message0 = "%1 %2 %3"
+args0 = [
+    { type = "field_dropdown", name = "dynamic_action", options = [["%{BKY_VALUE_MAX}", "MATH.MAX"], ["%{BKY_VALUE_MIN}", "MATH.MIN"]] },
+    { type = "input_value", name = "value1", align = "RIGHT", check = ["Number", "String"] },
+    { type = "input_value", name = "value2", align = "RIGHT", check = ["Number", "String"] }
+]
+style = "math_blocks"
+output = "Number"
+tooltip = "Get maximum or minimum of two values."
+helpUrl = "%{BKY_BLOCK_MATH_MAX_OR_MIN}"
+
+[[MATH]]
+type = "MATH_MAX_OR_MIN_LIST"
+message0 = "%1 %2"
+args0 = [
+    { type = "field_dropdown", name = "dynamic_action", options = [["%{BKY_VALUE_MAX_LIST}", "MATH.MAX_LIST"], ["%{BKY_VALUE_MIN_LIST}", "MATH.MIN_LIST"]] },
+    { type = "input_value", name = "list", align = "RIGHT", check = ["List"] }
+]
+style = "math_blocks"
+output = "Number"
+tooltip = "Get maximum or minimum from a list."
+helpUrl = "%{BKY_BLOCK_MATH_MAX_OR_MIN_LIST}"
+
+[[LOGIC]]
+type = "LOGIC_VALUE"
+message0 = "%1"
+args0 = [
+    { type = "field_dropdown", name = "value", options = [["%{BKY_VALUE_TRUE}", "true"], ["%{BKY_VALUE_FALSE}", "false"]] }
+]
+style = "logic_blocks"
+output = "Boolean"
+tooltip = "Returns logical True or False."
+
+[[LOGIC]]
+type = "LOGIC_NONE"
+message0 = "%{BKY_BLOCK_LOGIC_NONE}"
+style = "logic_blocks"
+output = "NoneType"
+tooltip = "Returns None (also known as Null)."
+helpUrl = "%{BKY_HELP_LOGIC_NONE}"
+
+[[LOGIC]]
+type = "LOGIC_IF"
+message0 = "%1 %2 %3 %4"
+args0 = [
+    { type = "input_value", name = "value1", align = "RIGHT" },
+    { type = "field_dropdown", name = "operator", options = [["=", "="], ["≠", "!="], [">", ">"], ["≥", ">="], ["<", "<"], ["≤", "<="]] },
+    { type = "input_dummy", align = "RIGHT" },
+    { type = "input_value", name = "value2", align = "RIGHT" }
+]
+style = "logic_blocks"
+output = "Boolean"
+tooltip = "Compare a value with another value."
+helpUrl = "%{BKY_HELP_LOGIC_IF}"
+
+[[LOGIC]]
+type = "LOGIC_GATE"
+message0 = "%1 %2 %3 %4"
+args0 = [
+    { type = "input_value", name = "value1", align = "RIGHT" },
+    { type = "field_dropdown", name = "dynamic_action", options = [["%{BKY_VALUE_OR}", "LOGIC.LOGICAL_OR"], ["%{BKY_VALUE_AND}", "LOGIC.LOGICAL_AND"], ["%{BKY_VALUE_NOR}", "LOGIC.LOGICAL_NOR"], ["%{BKY_VALUE_NAND}", "LOGIC.LOGICAL_NAND"], ["%{BKY_VALUE_XOR}", "LOGIC.LOGICAL_XOR"], ["%{BKY_VALUE_XNOR}", "LOGIC.LOGICAL_XNOR"]] },
+    { type = "input_dummy", align = "RIGHT" },
+    { type = "input_value", name = "value2", align = "RIGHT" }
+]
+style = "logic_blocks"
+output = "Boolean"
+tooltip = "Perform a logical gate with two values."
+helpUrl = ""
+
+[[DICTIONARY]]
+type = "DICTIONARY_PAIR"
+message0 = "%{BKY_FIELD_DICTIONARY_KEY} %1 %{BKY_FIELD_DICTIONARY_VALUE} %2"
+args0 = [
+    { type = "input_value", name = "key", align = "RIGHT" },
+    { type = "input_value", name = "value", align = "RIGHT" }
+]
+inputsInline = true
+style = "dictionary_blocks"
+output = "Pair"
+tooltip = "Return a dictionary pair."
+helpUrl = ""
+
+[[LISTS]]
+type = "LISTS_INCLUDES_MANY"
+message0 = "%{BKY_BLOCK_LISTS_INCLUDES} %1    %{BKY_FIELD_LISTS_LIST} %2 %{BKY_FIELD_LISTS_ITEMS} %3"
+args0 = [
+    { type = "field_dropdown", name = "dynamic_action", options = [["%{BKY_VALUE_INCLUDES_ALL}", "LISTS.INCLUDES_ALL"], ["%{BKY_VALUE_INCLUDES_ANY}", "LISTS.INCLUDES_ANY"]] },
+    { type = "input_value", name = "list", align = "RIGHT", check = ["List"] },
+    { type = "input_value", name = "items", align = "RIGHT", check = ["List"] }
+]
+style = "lists_blocks"
+output = "Boolean"
+tooltip = "Includes any/all."
+helpUrl = ""
+
+[[X]]
+type = "DISCORDM_COMPONENT_ROW"
+message0 = "%{BKY_BLOCK_DISCORDM_COMPONENT_ROW}"
+output = "String"
+style = "discordmodels_blocks"
+tooltip = "%{BKY_TOOLTIP_DISCORDM_COMPONENT_ROW}"
+helpUrl = ""
+
+[[X]]
+type = "FUNCTION_CREATE"
+message0 = "%{BKY_BLOCK_FUNCTION_CREATE} %1 %2 %3 %4"
+args0 = [
+    { type = "field_label_serializable", name = "name", text = "-" },
+    { type = "field_label_context", name = "function_id", text = "-" },
+    { type = "input_dummy" },
+    { type = "input_statement", name = "value", check = "Block" }
+]
+style = "function_blocks"
+inputsInline = false
+tooltip = "%{BKY_TOOLTIP_FUNCTION_CREATE}"
+helpUrl = ""
+
+[[X]]
+type = "FUNCTION_VALUE"
+message0 = "%{BKY_BLOCK_FUNCTION_VALUE}"
+output = ""
+style = "function_blocks"
+tooltip = "%{BKY_TOOLTIP_FUNCTION_VALUE}"
+helpUrl = ""
+
+[[X]]
+type = "FUNCTION_RETURN"
+message0 = "%{BKY_BLOCK_FUNCTION_RETURN} %1"
+args0 = [
+    { type = "input_value", name = "value" }
+]
+previousStatement = "Block"
+style = "function_blocks"
+tooltip = "%{BKY_TOOLTIP_FUNCTION_RETURN}"
+helpUrl = ""
+
+[[X]]
+type = "FUNCTION_CALL"
+message0 = "%{BKY_BLOCK_FUNCTION_CALL} %1 %2 %3 %4"
+args0 = [
+    { type = "field_label_serializable", name = "name", text = "-" },
+    { type = "field_label_context", name = "function_id", text = "-" },
+    { type = "input_dummy" },
+    { type = "input_value", name = "value", align = "RIGHT" }
+]
+output = ""
+style = "function_blocks"
+inputsInline = false
+tooltip = "%{BKY_TOOLTIP_FUNCTION_CALL}"
+helpUrl = ""
+

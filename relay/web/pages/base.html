@@ -1,0 +1,112 @@
+<!-- 
+    TODO: Insert a catchy message here.
+-->
+<!DOCTYPE html>
+<html lang="{{ tr.language }}" page="{{ '' if not page else page }}" mode="{{ mode or 'normal' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+    <meta name="theme-color" content="#0c0c0c"/>
+    {% if enable_toast %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    {% endif %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.css" integrity="sha512-J2+1q+RsZuJXabBfH1q/fgRr6jMy9By5SwVLk7bScEW7NFJkMUXxfeOyyxtDe6fsaJ4jsciexSlGrPYn9YbBIg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/assets/css/stylesheet.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/static/icon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/static/icon-32x32.png" />
+    <title>Relay</title>
+    {% endblock %}
+</head>
+<body>
+    {% if ((server_name) or (user_name)) and (not no_header) %}
+    <div style="display: flex; margin-bottom: 30px;">
+        {% if server_name %}
+        <div style="flex-grow: 1; text-align: left;">
+            <div style="display: flex;">
+                <img class="user-icon" style="margin-right: 15px;" src="{{ server_icon or '' }}">
+                <div style="display: block; flex-grow: 1;">
+                    <b>{{ server_name }}</b><br>
+                    <span style="opacity: 0.5; font-size: smaller; margin-top: 10px;">{{ tr('web.installing_on') }}</span><br>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div style="flex-grow: 1; text-align: left; align-self: center; display: flex;">
+            <img src="/assets/static/relay_font_logo.svg" height="35" style="height: 35px;">
+        </div>
+        {% endif %}
+        {% if user_name %}
+        <div style="flex-grow: 1; text-align: right;">
+            <div style="display: flex;">
+                <div style="display: block; flex-grow: 1;">
+                    <b>{{ user_name }}</b><span style="opacity: 0.5;">#{{ user_discriminator or '' }}</span><br>
+                    <a href="{{ refresh_url or '#' }}" style="margin-top: 10px; font-size: smaller;">{{ tr('web.not_you') }}</a>
+                </div>
+                <img class="user-icon" style="margin-left: 15px;" src="{{ user_icon or '' }}">
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+    <noscript>
+        <div class="card card-header">
+            <p>{{ tr("web.no_script") }}</p>
+        </div>
+    </noscript>
+    {% if (not no_parent) %}
+        <div class="{{ 'card' if (not no_card) else '' }}" id="form" style="display: none;">
+    {% endif %}
+    {% block content %}{% endblock %}
+    {% if (not no_parent) %}
+        </div>
+    {% endif %}
+    {% if (not no_footer) %}
+    <div class="footer">
+        <div style="flex-grow: 1; text-align: left;">
+            <div style="display: flex;">
+                <div style="display: block; flex-grow: 1;">
+                    {% if server_name and user_name %}
+                    <img src="/assets/static/relay_font_logo.svg" style="margin-bottom: 15px; height: 30px;" height="30"><br>
+                    {% endif %}
+                    <span style="line-height: 1.3;">
+                        Relay created by <a href="https://ysfchn.com" target="_blank">Yusuf Cihan</a> and published by <a href="https://github.com/fluxteam" target="_blank">FluxTeam</a><br>
+                        Proudly built with <a href="{{ docs('/about/libraries') }}" target="_blank">open source libraries.</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div style="flex-grow: 1; text-align: right;">
+            <div style="display: flex;">
+                <div style="display: block; flex-grow: 1;">
+                    <a href="{{ docs() }}" target="_blank">{{ tr("common.documentation") }}</a><br>
+                    <a href="https://ysfchn.com/flux" target="_blank">FluxTeam Discord</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.6/dialog-polyfill.min.js" integrity="sha512-qUIG93zKzcLBVD5RGRbx2PBmbVRu+tJIl+EPLTus0z8I1AMru9sQYdlf6cBacSzYmZVncB9rcc8rYBnazqgrxA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/js/inputs.js"></script>
+    <script src="/assets/js/editor.js"></script>
+    {% if enable_keyboard and enable_keyboard == False %}
+    <script>
+        // Disable Enter events to solve unwanted form submits and clicking buttons.
+        document.addEventListener('keydown', function (e) {
+            if (e.key == "Enter" || e.code == "Enter") {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

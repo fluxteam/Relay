@@ -1,0 +1,234 @@
+{#
+    HTML Form Inputs for Relay Package Installation Frontend.
+
+    * Inputs have a "relay-type" attribute so when the form has submitted, it converts the input value to their types.
+    * In the package.html, it selects all elements that has "relay-type" attribute for getting form values.
+    * Key/value inputs contains two inputs, the first element always parsed as Key and second element always parsed as Value. 
+#}
+
+
+{#
+    ANY
+
+    Creates a button that opens a <dialog> where user can type any value in it.
+
+    Placeholder takes 3-item list, title, description and link.
+    If it is null, then default title, description and link will be displayed.
+#}
+{% macro any(id, value = None, placeholder = None, options = None) %}
+    <dialog name="{{ id }}" class="expand">
+        <h3 class="dialog-title">
+            {{ tr('web.custom_value_title') if not placeholder else placeholder[0] }}
+        </h3>
+        {% if not placeholder %}
+            <span class="preview-label">{{ tr('common.beta')|upper }}</span>
+        {% endif %}
+        <button type="button" class="element-button close-button" onclick="this.parentNode.close();"><i class="ti ti-x"></i></button>
+        <br>
+        <p style="font-size: smaller;">
+            {% if not placeholder %}
+                {{ tr('web.custom_value_description_1') }} {{ tr('web.custom_value_description_2') }}<br><a href="{{ docs('/404') }}" target="_blank">{{ tr('web.custom_value_link') }}</a>
+            {% else %}
+                {{ placeholder[1] }}
+                {% if placeholder[2] %}
+                    <br><a href="{{ placeholder[2] }}" target="_blank"><i class="ti ti-external-link"></i>&nbsp;&nbsp;{{ tr('common.learn_more') }}</a>
+                {% endif %}
+            {% endif %}
+        </p>
+        {% set value_type = get_input_type(value) %}
+        <div class="button-tabs" style="margin-bottom: 10px;">
+            {% set types = [
+                ["none", "inputNone", "ban", tr('common.empty')],
+                ["string", "inputString", "letter-t", tr('common.string')],
+                ["number", "inputNumber", "number-3", tr('common.number')],
+                ["boolean", "inputBoolean", "square-check", tr('common.boolean')],
+                ["snowflake", "inputSnowflake", "user", tr('common.id')],
+                ["list", "inputList", "list", tr('common.list')],
+                ["mapping", "inputMapping", "braces", tr('common.mapping')]
+            ] %}
+            {% for option in types %}
+                <button 
+                    type="button" 
+                    class="element-button" 
+                    onclick="addDialogInput(this, '{{ id }}', {{ option[1] }}, false);" 
+                    relay-dialog="{{ option[0] }}"
+                    relay-ui="{{ 'selected' if value_type == option[0] else 'none' if (options and (option[0] not in options)) else '' }}"
+                >
+                    <i class="ti ti-{{ option[2] }}"></i>&nbsp;&nbsp;&nbsp;{{ option[3] }}
+                </button>
+            {% endfor %}
+        </div>
+        <div class="dialog-content" relay-export="{{ 'mapping' if value_type == 'mapping' else 'list' if value_type == 'list' else '' }}">
+            {% if value_type == "mapping" %}
+                {#
+                    If mapping is empty, use a dummy empty dictionary to show one field at least.
+                #}
+                {% for k, v in (value or {"": None}).items() %}
+                <div relay-attribute="field">
+                    <div relay-attribute="mapping">
+                        {{ string(id = id, value = k) }}
+                        {{ any(id = id, value = v) }}
+                    </div>
+                </div>
+                {% endfor %}
+                <button class="element-button" onclick="addField(this, true);"><i class="ti ti-plus"></i></button>
+                <button class="element-button" onclick="deleteField(this);"><i class="ti ti-minus"></i></button>
+            {% elif value_type == "list" %}
+                {#
+                    If list is empty, use a dummy empty list to show one field at least.
+                #}
+                {% for v in (value or [None]) %}
+                <div relay-attribute="field">
+                    {{ any(id = id, value = v) }}
+                </div>
+                {% endfor %}
+                <button class="element-button" onclick="addField(this, true);"><i class="ti ti-plus"></i></button>
+                <button class="element-button" onclick="deleteField(this);"><i class="ti ti-minus"></i></button>
+            {% else %}
+                <div relay-attribute="field">
+                    {% if value_type == "none" %}
+                        {{ blank(id = id) }}
+                    {% elif value_type == "string" %}
+                        {{ string(id = id, value = value) }}
+                    {% elif value_type == "number" %}
+                        {{ number(id = id, value = value) }}
+                    {% elif value_type == "boolean" %}
+                        {{ boolean(id = id, value = value) }}
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </dialog>
+    {{ edit() }}
+{% endmacro %}
+
+
+{#
+    Creates a "edit" button.
+#}
+{% macro edit() %}
+    <button type="button" class="element-button" onclick="addDialog(this);"><i class="ti ti-external-link"></i>&nbsp;&nbsp;{{ tr("common.edit") }}</button>
+{% endmacro %}
+
+
+{#
+    BLANK
+
+    Creates a "blank" input.
+
+    "options" has no effect here. It is only used for CHOICE and added for this input
+    to keep the method signature same.
+#}
+{% macro blank(id, value = None, placeholder = "", options = None) %}
+    <input type="text" name="{{ id }}" relay-type="none" value="{{ tr('common.empty') }}" disabled>
+{% endmacro %}
+
+
+{#
+    BOOLEAN
+
+    Creates a "select" tag that contains two options, True and False.
+
+    The "value" parameter can be used to select an option which will be shown
+    when user sees the page.
+
+    "options" has no effect here. It is only used for CHOICE and added for this input
+    to keep the method signature same.
+#}
+{% macro boolean(id, value = None, placeholder = "---", options = None) %}
+    <select name="{{ id }}" relay-type="boolean">
+        <option value="" {{ "selected" if value != True and value != False else "" }}>{{ placeholder }}</option>
+        <option value="true" {{ "selected" if value == True else "" }}>✔ {{ tr('common.true') }}</option>
+        <option value="false" {{ "selected" if value == False else "" }}>❌ {{ tr('common.false') }}</option>
+    </select>
+{% endmacro %}
+
+
+{#
+    LABEL
+
+    Creates a non editable label.
+
+    The "value" parameter can be used to set a value which will be shown
+    when user sees the page.
+
+    "options" has no effect here. It is only used for CHOICE and added for this input
+    to keep the method signature same.
+#}
+{% macro label(id, value = None, placeholder = "", options = None) %}
+    <input class="label-description" type="text" name="{{ id }}" style="text-align: right; padding-right: 15px; cursor: default;" value="{{ value or '' }}" placeholder="{{ placeholder }}" disabled>
+{% endmacro %}
+
+
+{#
+    STRING
+
+    Creates a "text" input.
+
+    The "value" parameter can be used to set a value which will be shown
+    when user sees the page.
+
+    "options" has no effect here. It is only used for CHOICE and added for this input
+    to keep the method signature same.
+#}
+{% macro string(id, value = None, placeholder = "", options = None) %}
+    <input type="text" name="{{ id }}" relay-type="string" value="{{ value or '' }}" placeholder="{{ placeholder }}">
+{% endmacro %}
+
+
+{#
+    NUMBER
+
+    Creates a "number" input.
+
+    The "value" parameter can be used to set a value which will be shown
+    when user sees the page.
+
+    "options" has no effect here. It is only used for CHOICE and added for this input
+    to keep the method signature same.
+#}
+{% macro number(id, value = None, placeholder = "", options = None) %}
+    <input type="number" step="any" name="{{ id }}" relay-type="number" value="{{ value or '' }}" placeholder="{{ placeholder }}">
+{% endmacro %}
+
+
+{#
+    SNOWFLAKE
+
+    Creates a "text" input that only accepts snowflakes (Twitter Snowflake).
+
+    The "value" parameter can be used to set a value which will be shown
+    when user sees the page.
+
+    "options" has no effect here. It is only used for CHOICE and added for this input
+    to keep the method signature same.
+#}
+{% macro snowflake(id, value = None, placeholder = "ID", options = None) %}
+    <input type="text" name="{{ id }}" placeholder="{{ placeholder }}" relay-type="snowflake" pattern="[0-9]{15,}" value="{{ value or '' }}">
+{% endmacro %}
+
+
+{#
+    CHOICE
+
+    Creates a "select" tag that contains specified options.
+
+    The "value" parameter can be used to set a value which will be shown
+    when user sees the page.
+#}
+{% macro choice(id, value = None, placeholder = "Options", options = None) %}
+    <select name="{{ id }}" relay-type="choice">
+        <option value="" {{ "selected" if value == None else "" }}>---</option>
+        <optgroup label="{{ placeholder }}">
+            {% if options is mapping %}
+                {% for k, v in options.items() %}
+                    <option value="{{ v }}" {{ "selected" if value == v else "" }}>{{ k }}</option>
+                {% endfor %}
+            {% else %}
+                {% for k in options %}
+                    <option value="{{ k }}" {{ "selected" if value == k else "" }}>{{ k }}</option>
+                {% endfor %}
+            {% endif %}
+        </optgroup>
+    </select>
+{% endmacro %}

@@ -1,0 +1,256 @@
+/* Show language banner on English language */
+html[lang="en"] .language-banner {
+    display: flex;
+}
+
+.language-banner {
+    display: none;
+}
+
+/* Change dark theme hue. */
+[data-md-color-scheme="slate"] {
+    --md-hue: 220;
+    --md-default-bg-color: #0c0c0c;
+    --image-invert: 0;
+}
+
+/* Change dark theme hue. */
+[data-md-color-scheme="default"] {
+    --image-invert: 1;
+}
+
+.md-tabs {
+    background-color: var(--md-default-bg-color);
+}
+
+/* Invert logo when theme changes */
+.md-logo > img {
+    filter: invert(var(--image-invert));
+}
+
+/* Bigger admontion and tables. */
+.admonition, table, details {
+    font-size: .7rem !important;
+}
+
+/* Custom primary button */
+.primary-button {
+    background-color: var(--md-accent-fg-color) !important;
+    border-color: var(--md-accent-fg-color) !important;
+    color: white !important;
+}
+
+.primary-button:hover {
+    background-color: var(--md-primary-fg-color) !important;
+    border-color: var(--md-primary-fg-color) !important;
+    color: white !important;
+}
+
+[data-md-color-scheme="default"] .primary-button:hover {
+    background-color: var(--md-code-hl-constant-color) !important;
+    border-color: var(--md-code-hl-constant-color) !important;
+}
+
+/* Custom secondary button */
+.secondary-button {
+    color: var(--md-accent-fg-color) !important;
+}
+
+.secondary-button:hover {
+    color: #fff !important;
+}
+
+/* Bigger admoniton icon. */
+.admonition-title::before, details > summary::before, details > summary::after {
+    height: 23px !important;
+    width: 23px !important;
+}
+
+/* Add more space to adomoniton icon. */
+.admonition-title, details > summary {
+    padding: .4rem .6rem .4rem 2.2rem !important;
+}
+
+/* Get header background color from background instead of foreground. */
+.md-header {
+    background-color: var(--md-default-bg-color);
+    box-shadow: none !important;
+}
+
+/* Remove the border that added to left of the ToC. */
+.md-nav--integrated .md-nav__link[for="__toc"] ~ .md-nav {
+    border-left: .05rem solid transparent !important;
+}
+
+/* Remove keyword arguments from mkdocstrings. */
+.doc.doc-heading > code.highlight.language-python > span:not(:first-child) {
+    display: none !important;
+}
+
+/* Bigger font size for code tags in h3. */
+h3 > code {
+    font-size: 1em !important;
+}
+
+/* Hide first permalink icon, and disable margin of h1. */
+.main-landing {
+    text-align: center;
+}
+
+.main-landing > h1 > .headerlink {
+    display: none;
+}
+
+.main-landing > h1 {
+    margin-bottom: 0px;
+}
+
+/* Expand footer padding */
+.md-footer > .md-footer-meta > .md-footer-meta__inner {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Bigger footer icons */
+.md-footer-social > .md-footer-social__link > svg {
+    max-height: 1rem;
+}
+
+.guide-container {
+    padding: 0px 0px 10px;
+    display: flex;
+}
+
+.guide-container > p:first-child {
+    margin-right: 40px;
+    object-fit: contain;
+    align-self: flex-start;
+}
+
+.guide-container.expanded > p:first-child {
+    margin-right: 100px;
+}
+
+.guide-text.expanded {
+    padding-right: 70px;
+}
+
+.guide-image {
+    max-width: none !important;
+    width: 19rem;
+}
+
+.guide-image.expanded {
+    width: 26rem;
+}
+
+.guide-container > .guide-text {
+    flex: 1 1 auto;
+}
+
+img, video {
+    border-radius: 10px;
+}
+
+.landing-header {
+    display: block;
+    color-adjust: exact;
+    unicode-bidi: isolate;
+    font-size: 1.5625em !important;
+    font-weight: lighter;
+    line-height: 1.4;
+    margin: 1.6em 0 .64em;
+    font-weight: 300;
+    letter-spacing: -.01em;
+}
+
+/*
+    Expand images to screen and wrap
+    on smaller screens.
+*/
+@media (min-width: 0px) and (max-width: 800px) {
+    .guide-container:not(.no-wrap) {
+        flex-wrap: wrap;
+    }
+
+    .guide-container:not(.no-wrap) > p:first-child {
+        margin-right: 0px;
+        margin-left: -0.8rem;
+        margin-right: -0.8rem;
+    }
+
+    .guide-container:not(.no-wrap) .guide-image {
+        width: 100%;
+    }
+
+    .guide-text.expanded {
+        padding-right: 0px;
+    }
+
+    img, video {
+        border-radius: 0px;
+    }
+}
+
+/* Adaptive Cards */
+.ac-container {
+    background-color: transparent;
+}
+
+#adaptive-card > .ac-container {
+    padding: 0px !important;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+    margin-right: 15px !important;
+    flex-shrink: 0;
+}
+
+.ac-input-container > .ac-input.ac-choiceSetInput-expanded > div + div {
+    margin-top: 10px;
+}
+
+.ac-input-container + .ac-textBlock {
+    margin-top: 15px;
+}
+
+[data-md-color-scheme="slate"] input[type="text"],
+[data-md-color-scheme="slate"] textarea {
+    background: #151515;
+    color: var(--md-typeset-color);
+}
+
+textarea {
+    border-top: medium none !important;
+    border-left: medium none !important;
+    border-right: medium none !important;
+    font-family: var(--md-text-font-family);
+    padding: 15px !important;
+}
+
+/* Hide code annotation comment characters */
+.annotate.highlight .c1 {
+    visibility: collapse;
+    margin-left: -20px;
+}
+
+.highlight .c1 * {
+    visibility: visible;
+}
+
+.md-tooltip__inner {
+    font-size: .69rem;
+}
+
+p.center-image {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: smaller;
+}
+
+p.center-image img, p.center-image video {
+    margin-bottom: 10px;
+}

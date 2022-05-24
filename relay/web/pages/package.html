@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% import 'inputs.jinja' as inputs with context %}
+{% block content %}
+    <div class="card-header">
+        {% if not overview %}
+        <!-- Package -->
+            <img class="pack-icon" src="{{ pack_icon }}" width="120" height="120">
+            <h2 style="margin-bottom: 8px;">
+                {{ pack_name }}
+                {% if pack_verified %}
+                    <abbr title="{{ tr('common.verified') }}"><i class="ti ti-circle-check"></i></abbr>
+                {% endif %}
+            </h2>
+            <span>
+                {{ pack_author }}
+                {% if pack_author_verified %}
+                    <abbr title="{{ tr('common.verified') }}"><i class="ti ti-circle-check"></i></abbr>
+                {% endif %}
+            </span>
+            <p style="margin-top: 25px; margin-bottom: 20px;">
+                <span style="opacity: 0.5; display: block; font-size: 15px; margin-bottom: 4px;">{{ pack_title }}</span>
+                <span style="opacity: 0.4; font-size: 13px; display: block;">{{ pack_description }}</span>
+            </p>
+            <div class="metadata-view">
+                <div><span style="opacity: 0.5; display: block;">{{ tr('common.version') }}</span>{{ pack_version }}</div>
+                <div><span style="opacity: 0.5; display: block;">{{ tr('common.size') }}</span>{{ pack_size }}</div>
+                <div><span style="opacity: 0.5; display: block;">{{ tr('common.repository') }}</span>{{ pack_repo }}</div>
+                {% if pack_date %}
+                <div><span style="opacity: 0.5; display: block;">{{ tr('common.creation_date') }}</span>{{ pack_date }}</div>
+                {% endif %}
+            </div>
+        {% else %}
+        <!-- Overview -->
+            <div style="text-align: left; display: flex;">
+                <div style="flex-grow: 1;">
+                    <h2 style="margin-bottom: 8px; margin-top: 30px; font-size: 22px;">
+                        {{ pack_name }}
+                        {% if pack_verified %}
+                            <abbr title="{{ tr('common.verified') }}"><i class="ti ti-circle-check"></i></abbr>
+                        {% endif %}
+                    </h2>
+                    <span style="display: block; font-size: 14px;">
+                        <span style="opacity: 0.5;">{{ tr('common.repository') }}:</span> 
+                        <a href="{{ pack_source }}" target="_blank" style="color: white;">
+                            <i class="ti ti-notebook"></i>&nbsp;
+                            {{ pack_service.replace('-', '/', 1) }}
+                        </a>
+                    </span>
+                    <div style="margin-top: 20px; margin-bottom: 40px; font-size: 14px;">
+                        <img class="user-icon small" src="{{ pack_author_image }}" style="margin-right: 10px;">
+                        <a href="{{ pack_author_link or pack_source }}" target="_blank" style="color: white;">
+                            {{ pack_author }}
+                            {% if pack_author_verified %}
+                            <abbr title="{{ tr('common.verified') }}"><i class="ti ti-circle-check"></i></abbr>
+                            {% endif %}
+                        </a>
+                    </div>
+                    <span style="display: block; font-size: 16px; opacity: 0.8; margin-bottom: 30px;">
+                        {{ tr('web.install_overview') }}
+                    </span>
+                    {% if user_name %}
+                        <select name="server" id="server" style="width: 80%; margin-bottom: 20px;">
+                            <option value="">{{ tr('web.select_server') }}...</option>
+                            {% for state, guild_items in guilds.items() if state == "LAUNCH" %}
+                                {% for id, guild in guild_items %}
+                                    <option value="{{ id }}">{{ guild["name"] }}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                        {% if has_parameters %}
+                            <button type="button" class="form-button" onclick="closeOverview('{{ install_url }}');">
+                                <div style="width: 100%;"><i class="ti ti-arrow-right"></i>&nbsp;&nbsp;{{ tr('common.next') }}</div>
+                            </button>
+                        {% else %}
+                            <button type="button" class="form-button" onclick="installOverview('{{ post_url }}', '{{ success_url }}');">
+                                <div style="width: 100%;"><i class="ti ti-rocket"></i>&nbsp;&nbsp;{{ tr('common.install') }}</div>
+                            </button>
+                        {% endif %}
+                    {% else %}
+                        <button type="button" class="form-button" onclick="window.location.href = '{{ refresh_url }}';">
+                            <div style="width: 100%;"><i class="ti ti-brand-discord"></i>&nbsp;&nbsp;{{ tr('web.sign_in') }}</div>
+                        </button>
+                    {% endif %}
+                    <span style="display: block; font-size: 14px; margin-top: 20px;">
+                        <a href="/invite-beta" target="_blank">{{ tr('web.invite') }}</a>
+                    </span>
+                    <span style="display: block; font-size: 14px; opacity: 0.5; margin-bottom: 30px;">
+                        {{ 
+                            tr(
+                            'web.overview_intro', 
+                            '<a href="/links/tos">' + tr('web.overview_intro_tos') + '</a>', 
+                            '<a href="/links/pyp">' + tr('web.overview_intro_pyp') + '</a>'
+                            )|safe
+                        }}
+                    </span>
+                </div>
+                <img class="hide-small" src="/assets/static/relay_right_colored.png" style="margin-left: 50px; margin-right: calc(min(6vw, 100px) * -1); margin-top: auto; margin-bottom: auto;" width="300">
+            </div>
+        {% endif %}
+        <br>
+        <div class="error" style="{{ 'display: none;' if not is_installed else '' }}" id="errorbox">
+            <b>{{ tr("web.something_wrong") }}</b>
+            <span>
+            {% if is_installed %}
+                {{ tr('web.package_installed_already') }}
+            {% endif %}
+            </span>
+            <br>
+            <button type="button" onclick="hideError();">{{ tr('common.ok') }}</button>
+        </div>
+        {% if not overview %}
+        <div style="margin-top: 30px; display: flex; flex-wrap: wrap; margin-bottom: -5px;">
+        {% if parameters %}
+        <div class="button-tabs" style="flex-grow: 1; text-align: left;">
+            <button type="button" class="element-button" onclick="switchTab(this, () => {toggleParameters(true);});" relay-ui="selected">
+                <i class="ti ti-border-all"></i>&nbsp;&nbsp;&nbsp;{{ tr('web.all_parameters') }}
+            </button>
+            <button type="button" class="element-button" onclick="switchTab(this, () => {toggleParameters(false);});" relay-ui="">
+                <i class="ti ti-triangle"></i>&nbsp;&nbsp;&nbsp;{{ tr('web.only_required') }}
+            </button>
+        </div>
+        {% endif %}
+        <div class="button-tabs" style="flex-grow: {{ '0' if parameters else '1' }}; text-align: {{ 'right' if parameters else 'center' }};">
+            <button type="button" title="{{ tr('common.repository') }}" class="element-button" onclick="window.open('{{ pack_source }}');" relay-ui="">
+                <i class="ti ti-git-fork"></i>
+            </button>
+            <button type="button" title="{{ tr('common.flag') }}" class="element-button" onclick="window.open('{{ pack_report }}');" relay-ui="">
+                <i class="ti ti-flag-3"></i>
+            </button>
+        </div>
+        </div>
+        {% endif %}
+    </div>
+    {% if not overview %}
+    <form autocomplete="off" onsubmit="x = function(){ event.preventDefault(); return false; }; x();" novalidate>
+        {% for key, param in parameters.items() %}
+            {% set input_type = split_type_value(param.type) %}
+            {% set is_mapping = (input_type|length == 2) and (input_type[0] != None) %}
+            {% set is_list = (input_type|length == 2) and (input_type[0] == None) %}
+            <div relay-attribute="parameter" class="{{ 'required' if param.required else '' }}">
+                <label for="{{ key }}">
+                    <div style="display: flex;">
+                        <samp style="font-size: larger;">{{ key }}</samp>
+                        {% if param.required %}
+                            <span class="required-label" title="{{ tr('web.required_parameter') }}">
+                                <i class="ti ti-triangle"></i>
+                            </span>
+                        {% endif %}
+                    </div>
+                    <div class="field-description">
+                        <span style="opacity: 0.5;">{{ param.get_localized(tr.language).description }}</span>
+                    </div>
+                </label>
+                <div relay-attribute="container">
+                    {# 
+                        It adds a "relay-attribute" to specify this div contains a field,
+                        so it can copy and remove fields in JavaScript by only searching for
+                        this attribute.
+                    #}
+                    {% if is_mapping %}
+                        {% for k, v in get_default("mapping", None if param.default in [Empty, None] else param.default).items() %}
+                        <div relay-attribute="field">
+                            <div relay-attribute="mapping">
+                                {{ 
+                                    inputs[get_input(input_type[0])](
+                                        id = key,
+                                        value = k, 
+                                        options = get_options(input_type[0], param.options), 
+                                        placeholder = get_name(input_type[0])
+                                    )
+                                }}
+                                {{ 
+                                    inputs[get_input(input_type[1])](
+                                        id = key,
+                                        value = v,
+                                        options = get_options(input_type[1], param.options),
+                                        placeholder = get_name(input_type[1])
+                                    )
+                                }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% elif is_list %}
+                        {% for v in get_default("list", None if param.default in [Empty, None] else param.default) %}
+                        <div relay-attribute="field">
+                            {{ 
+                                inputs[get_input(input_type[1])](
+                                    id = key,
+                                    value = v,
+                                    options = get_options(input_type[1], param.options), 
+                                    placeholder = get_name(input_type[1])
+                                ) 
+                            }}
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div relay-attribute="field">
+                            {{ 
+                                inputs[get_input(input_type[0])](
+                                    id = key, 
+                                    value = None if param.default in [Empty, None] else param.default, 
+                                    options = get_options(input_type[0], param.options), 
+                                    placeholder = get_name(input_type[0])
+                                ) 
+                            }}
+                        </div>
+                    {% endif %}
+                    {% if is_mapping or is_list %}
+                    <button type="button" class="element-button" onclick="addField(this)"><i class="ti ti-plus"></i></button>
+                    <button type="button" class="element-button" onclick="deleteField(this)"><i class="ti ti-minus"></i></button>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="center" style="display: flex; margin-top: 40px;">
+            <button type="button" class="hero-button" onclick="httpRequest('POST', '{{ post_url }}', getFormData(), '{{ success_url }}');">
+                <div style="width: 100%;">
+                    <i class="ti ti-rocket"></i>&nbsp;&nbsp;{{ tr('common.install') }}
+                </div>
+            </button>
+        </div>
+    </form> 
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,303 @@
+# Configuration file for the Blockly workspace and Blockly itself.
+
+
+# Blockly Component Styles, they are passed to Blockly directly.
+# https://developers.google.com/blockly/guides/configure/web/themes#component_styles
+[styles]
+workspaceBackgroundColour = "#0c0c0c"
+flyoutBackgroundColour = "#121212"
+toolboxBackgroundColour = "#0c0c0c"
+toolboxForegroundColour = "#ffffff"
+scrollbarOpacity = 0.15
+
+
+# Models are objects such as "Embed", "User", "Role" that appear in
+# DISCORD category. These are registered as blocks, so people 
+# can get attributes from these objects, such as accessing an ID 
+# from a User object.
+[models]
+module = "relay.models"
+creatable = [
+    "Embed",
+    "Overwrites",
+    "EmbedAuthor",
+    "EmbedField",
+    "EmbedFooter",
+    "Mentions",
+    "Button",
+    "TextInput",
+    "Select",
+    "SelectOption"
+]
+readable = [
+    "Server", 
+    "Channel",
+    "Message",
+    "Reaction",
+    "Role",
+    "Member",
+    "User",
+    "Embed",
+    "EmbedAuthor",
+    "EmbedField",
+    "EmbedFooter",
+    "Emoji",
+    "Mentions",
+    "Overwrites",
+    "Ban",
+    "Interaction",
+    "Button",
+    "TextInput",
+    "Select",
+    "SelectOption"
+]
+
+
+[replace_rules]
+VARIABLE = "DEFINITION"
+
+
+[flags]
+# Advanced blocks are extra blocks that probably won't be useful for an end-user, but for developers instead.
+# When advanced blocks are disabled (which is the default), these blocks won't appear in toolbox.
+# But if one of these blocks already added to the workspace, they will continue to work even if the setting has disabled.
+# TODO: Category names shouldn't be required, we already require the block names.
+advanced_blocks = [
+    ["WORKFLOW", "WORKFLOW_EVENT_ID"],
+    ["WORKFLOW", "WORKFLOW_CUSTOM_ACTION"],
+    ["WORKFLOW", "WORKFLOW_COMMAND_TRANSLATION"]
+]
+
+
+# We need to exclude some blocks from appearing in flyout for preventing overrides and duplicates.
+# This doesn't removes the blocks, they just won't appear in toolbox.
+#
+# - Some special blocks are created with JavaScript, not in backend. So we exclude their non-functional/dummy copies. 
+#   Sadly not all blocks can be defined in backend (such as mutator blocks), due to limitations.
+#
+# - Also, we have "merged" blocks that allows to use multiple blocks' in single block, for example, Sum, Sub, Div... are
+#   merged in single block. But their non-merged variants still exists, so we need to remove it from toolbox.
+[exclude]
+blocks = [
+    "DICTIONARY.CREATE",
+    "DICTIONARY.CREATE_FROM_PAIRS",
+    "LISTS.CREATE",
+    "LISTS.INCLUDES_ANY",
+    "LISTS.INCLUDES_ALL",
+    "LOGIC.TRUE",
+    "LOGIC.FALSE",
+    "LOGIC.NONE",
+    "LOGIC.IF",
+    "LOGIC.IF_ASSERT",
+    "LOGIC.IS_TRUTH",
+    "LOGIC.LOGICAL_OR",
+    "LOGIC.LOGICAL_AND",
+    "LOGIC.LOGICAL_NOR",
+    "LOGIC.LOGICAL_NAND",
+    "LOGIC.LOGICAL_XOR",
+    "LOGIC.LOGICAL_XNOR",
+    "MATH.SUM",
+    "MATH.SUB",
+    "MATH.DIV",
+    "MATH.MUL",
+    "MATH.EXP",
+    "MATH.MOD",
+    "MATH.MIN",
+    "MATH.MAX",
+    "MATH.MIN_LIST",
+    "MATH.MAX_LIST",
+    "DEFINITION.*",
+    "LOGIC.STOP",
+    "OBJECT.*",
+    "TEXT.INCLUDES_ANY",
+    "TEXT.INCLUDES_ALL",
+    "TEXT.JOIN",
+    "TEXT.IS_EMPTY",
+    "WORKFLOW.LOOP_FOR_EACH"
+]
+
+
+# Categories that appears in the Blockly workspace,
+# the first defined category will be added to top.
+#
+# * id:        ID of category, used in many places.
+# * color:     Hex color for category.
+#   icon:      Icon hex code from tabler-icons. Don't add the (\) prefix, just the hex value.
+#              (https://tabler-icons.io/)
+#   visible:   Visibility of the category. (For pseudo categories.)
+#   elements:  Lists of lists of elements that will be inserted to flyout.
+#              First element specifies the index that other elements will be inserted starting from.
+[[categories]]
+id = "WORKFLOW"
+color = "#B57609"
+icon = "ed3d"
+
+[[categories]]
+id = "DEFINITION"
+color = "#4d3185"
+icon = "efa5"
+elements = [
+    [0, "label:FUNCTIONS", "button:CREATE_FUNCTION_VARIABLE", "block:FUNCTION_RETURN", "block:FUNCTION_VALUE"],
+    [4, "separator", "label:VARIABLES"],
+    [6, "button:CREATE_GLOBAL_VARIABLE"],
+    [7, "button:CREATE_LOCAL_VARIABLE"]
+]
+
+[[categories]]
+id = "DISCORD"
+color = "#545CB2"
+icon = "ece3"
+elements = [
+    # TODO: Seperators and labels are not inserted correctly.
+    # [0, "label:ENTITIES" ],
+    # [31, "block:DISCORDM_COMPONENT_ROW", "separator", "label:MESSAGES" ],
+    # [44, "separator", "label:CHANNELS" ],
+    # [52, "separator", "label:MEMBERS" ],
+    # [60, "separator", "label:SERVER" ],
+    # [66, "separator", "label:ROLES" ],
+    # [72, "separator", "label:INTERACTIONS" ],
+    # [84, "separator", "label:WEBHOOKS" ]
+]
+
+[[categories]]
+id = "DISCORDMODELS"
+color = "#545CB2"
+visible = false
+
+[[categories]]
+id = "DICTIONARY"
+color = "#3246A8"
+icon = "ebcc"
+elements = [
+    [0, "block:DICTIONARY_CREATE"]
+]
+
+[[categories]]
+id = "LISTS"
+color = "#3962BC"
+icon = "ebcd"
+elements = [
+    [0, "block:LISTS_CREATE"]
+]
+
+[[categories]]
+id = "LOGIC"
+color = "#4CA042"
+icon = "ee87"
+
+[[categories]]
+id = "MATH"
+color = "#843995"
+icon = "edf2"
+
+[[categories]]
+id = "TEXT"
+color = "#A92D3B"
+icon = "ec63"
+
+[[categories]]
+id = "VARIABLE"
+color = "#963c1e"
+visible = false
+
+[[categories]]
+id = "FUNCTION"
+color = "#4d3185"
+visible = false
+
+[[categories]]
+id = "MISCELLANEOUS"
+color = "#333333"
+icon = "ebca"
+elements = [
+    [0, "label:WEB"],
+    [5, "separator", "label:LOG"]
+]
+
+[[categories]]
+id = "TIME"
+color = "#307E61"
+icon = "ea70"
+
+
+# These settings appear when user has clicked their profile icon at the top-right of workspace.
+# Strings for these settings can be found in "strings" folder, and setting values are fetched with
+# getSetting() method in "web/blockly/utils.js"
+[[settings]]
+id = "appearance"
+icon = "app-window"
+items = [
+    { id = "hide_grid", type = "BOOLEAN", default = false },
+    { id = "snap_grid", type = "BOOLEAN", default = false },
+    { id = "renderer", type = "OPTION", options = ["thrasos", "geras", "zelos"], default = "thrasos" },
+    { id = "horizontal", type = "BOOLEAN", default = false }
+]
+
+[[settings]]
+id = "behavior"
+icon = "triangle-square-circle"
+items = [
+    { id = "warnings", type = "BOOLEAN", default = false },
+    { id = "enable_sounds", type = "BOOLEAN", default = true },
+    { id = "keep_toolbox_open", type = "BOOLEAN", default = false },
+    { id = "advanced_blocks", type = "BOOLEAN", default = false },
+    { id = "zoom_with_wheel", type = "BOOLEAN", default = false },
+    # { id = "finished_tutorial", type = "BOOLEAN", default = false } 
+    # TODO: Not implemented yet.
+]
+
+[[settings]]
+id = "other"
+icon = "comet"
+items = [
+    { id = "predisposition", type = "OPTION", options = ["0", "1", "2"], default = "0" }
+]
+
+
+# Mapping of prefixes between Blockly strings and Relay strings.
+# %{BKY_CATEGORY_TEXT} -> tr("blockly.categories.TEXT")
+#       └──────┘              └────────────────┘
+#        source                     target
+[prefixes]
+_ = "blockly.messages"
+CATEGORY = "blockly.categories"
+BLOCK = "blockly.blocks"
+FIELD = "blockly.fields"
+TOOLTIP = "blockly.tooltips"
+VALUE = "blockly.values"
+
+
+# Changelog items that are displayed for first-time users and other users who visited after a new update.
+#
+# * all:
+#   Displayed for ALL users (new and existing users), used for major changes. Because of that, 
+#   strings for these changelog items are written like these features was already existed.
+#
+# * extra:
+#   Displayed for existing users (who at least a saw a changelog item from "all" section)
+#   Used for announcing bug fixes, enhancements and other stuff that doesn't count as major change.
+[changelog]
+all = [
+    { id = "splash", media = "/assets/static/intro1.mp4", is_splash = true },
+    { id = "no_code", media = "/assets/static/intro2.mp4" },
+    { id = "collab", media = "/assets/static/intro3.mp4" },
+    { id = "interactions", media = "/assets/static/intro7.mp4" },
+    { id = "deploy", media = "/assets/static/intro_deploy.png" },
+    { id = "save", media = "/assets/static/intro4.mp4" },
+    { id = "debug", media = "/assets/static/intro5.mp4" },
+    { id = "definitions", media = "/assets/static/intro_definitions.png" },
+    { id = "finish", media = "/assets/static/intro6.mp4" }
+]
+extra = [
+    { id = "new", media = "/assets/static/intro_new.png", is_splash = true },
+    { id = "log_upgrade", media = "/assets/static/intro8.mp4" },
+    { id = "loop_block", media = "/assets/static/intro_loop_block.png" }
+]
+
+
+# Mapping of sound IDs and their paths in assets.
+# Sounds from https://material.io/design/sound/sound-resources
+# Licensed under CC-BY 4.0
+[sounds]
+save_done = "/assets/static/sound_save_done.wav"
+save_fail = "/assets/static/sound_save_fail.wav"

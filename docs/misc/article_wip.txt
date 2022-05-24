@@ -1,0 +1,3 @@
+<div class="language-banner" style="padding: 15px 20px 15px 20px; color: #ff5656; border-radius: 12px; border: 2px solid #ff46464f; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
+  <span style="flex-grow: 1;">You are viewing Turkish version of the page as it is the main draft. Once it's done, the article will be translated to English. It has provided anyway as a reference.</span>
+</div>

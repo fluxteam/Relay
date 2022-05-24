@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="manifest" href="/assets/static/manifest.webmanifest">
+{% endblock %}
+{% block content %}
+    {% for state, guild_items in guilds.items() %}
+    <h2 style="margin-top: 50px; margin-bottom: 20px;">
+        {% if state == "INVITE" %}
+            {{ tr("common.invite") }}
+        {% elif state == "LAUNCH" %}
+            {{ tr("actions.servers") }}
+        {% else %}
+            {{ tr("error.missing_permissions.title") }}
+        {% endif %}
+        <span style="opacity: 0.4; margin-left: 10px; margin-left: 5px; font-weight: normal;">
+            ({{ guild_items|length }})
+        </span>
+    </h2>
+        <div class="panel">
+        {% for id, guild in guild_items %}
+            <div class="panel-item">
+                <div class="panel-content">
+                    <img class="panel-avatar" src="{{ server_icon(id, guild['icon']) }}" width="48" height="48">
+                    <span>{{ guild["name"] }}</span>
+                </div>
+                <div class="panel-action">
+                {% if state == "INVITE" %}
+                    {% if can_invite %}
+                        <button class="element-button" onclick="invite('{{ id }}')">
+                            <i class="ti ti-plus"></i>&nbsp;&nbsp;{{ tr("common.invite") }}
+                        </button>
+                    {% else %}
+                        <button class="element-button" disabled>
+                            {{ tr("web.not_eligible") }}
+                        </button>
+                    {% endif %}
+                {% elif state == "LAUNCH" %}
+                    <button class="form-button" onclick="view('{{ id }}')">
+                        <i class="ti ti-external-link"></i>&nbsp;&nbsp;{{ tr("common.launch") }}
+                    </button>
+                {% else %}
+                    <button class="element-button" disabled>
+                        {{ tr("error.missing_permissions.title") }}
+                    </button>
+                {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}
+{% block script %}
+<script>
+    const invite = (x) => window.location.href = "/invite-beta?guild_id=" + x;
+    const view = (x) => window.location.href = "/workspaces/" + x;
+</script>
+{% endblock %}

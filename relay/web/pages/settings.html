@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="panel">
+        <div class="panel-item">
+            <div class="panel-content">
+                <img class="panel-avatar" src="{{ user_icon }}" width="70" height="70" style="height: 70px; width: 70px;">
+                <div>
+                    <span style="margin-bottom: 0px; display: block;">
+                        {{ user["username"] }}
+                    </span>
+                    <span style="font-size: small; opacity: 0.5; line-height: 20px; display: block;">
+                        {{ user["id"] }}
+                    </span>
+                </div>
+            </div>
+            <div class="panel-action">
+                <a href="?oauth=1"><i class="ti ti-switch-horizontal"></i></a>
+            </div>
+        </div>
+    </div>
+    <form method="post" autocomplete="off" novalidate style="margin-bottom: 50px;">
+    {% if message %}
+        <div class="error error-success" id="errorbox" style="display: flex; margin-top: 20px;">
+            <span style="flex-grow: 1; margin: auto;">
+            {{ message }}
+            </span>
+            <br>
+            <button type="button" onclick="hideError();" style="margin: 0px;">{{ tr('common.ok') }}</button>
+        </div>
+    {% endif %}
+    {% for group in settings %}
+        <h2 style="margin-top: 50px; margin-bottom: 20px; font-size: 20px; font-weight: normal;">
+            <i class="ti ti-{{ group['icon'] }}" style="font-size: 23px; font-weight: 100;"></i>&nbsp;&nbsp;{{ tr("settings." + group["id"])["title"] }}
+        </h2>
+        <div class="panel">
+        {% for item in group["items"] %}
+            <div class="panel-item">
+                <div class="panel-content">
+                    <div>
+                        <span style="margin-bottom: 6px; display: block;">
+                            {{ tr("settings." + group["id"] + "." + item["id"])["title"] }}
+                        </span>
+                        <span style="font-size: small; opacity: 0.5; line-height: 20px; display: block;">
+                            {{ tr("settings." + group["id"] + "." + item["id"])["description"] }}
+                        </span>
+                    </div>
+                </div>
+                <div class="panel-action">
+                    {% if item["type"] == "BOOLEAN" %}
+                        <input type="checkbox" id="{{ item['id'] }}" name="{{ item['id'] }}" {{ "checked" if user_settings.get(item['id'], item['default']) else "" }}>
+                    {% elif item["type"] == "OPTION" %}
+                        <select id="{{ item['id'] }}" name="{{ item['id'] }}">
+                            {% set value = user_settings.get(item['id'], item['default']) %}
+                            {% for v in item["options"] %}
+                                <option value="{{ v }}" {{ "selected" if value == v else "" }}>{{ tr("settings." + group["id"] + "." + item["id"])["items"][v] }}</option>
+                            {% endfor %}
+                        </select>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+    <div class="center" style="display: flex; margin-top: 40px;">
+        <button type="submit" class="hero-button">
+            <div style="width: 100%;">
+                <i class="ti ti-device-floppy"></i>&nbsp;&nbsp;{{ tr('common.save') }}
+            </div>
+        </button>
+    </div>
+    </form>
+{% endblock %}

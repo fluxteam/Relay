@@ -1,0 +1,927 @@
+:root {
+    --background-body: #0c0c0c;
+    --button-base: #161616;
+    --button-hover: #2c2c2c;
+    --background: #111;
+    --focus: rgba(255, 255, 255, 0.67);
+}
+
+.footer {
+    color:rgba(255, 255, 255, 0.3);
+    font-size: small;
+    display: flex;
+    margin-top: 20px;
+    padding: 20px .2rem 20px .2rem;
+    width: 100%;
+}
+
+.footer a {
+    color: #fff;
+}
+
+video:focus { 
+    outline: none; 
+}
+
+dialog {
+    background: var(--background-body);
+    color: #dbdbdb;
+    color: var(--text-main);
+    border: none;
+    border-width: 0px;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.20);
+    max-width: 55rem;
+    /* min-width: 13rem; */
+    animation: fadein .5s;
+    text-align: left;
+    /* Fixed dialog properties */
+    position: fixed;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+@keyframes fadein {
+	from {
+		opacity:0;
+	}
+	to {
+		opacity:1;
+	}
+}
+
+.dialog-title {
+    float: left;
+    margin: 0px;
+}
+
+dialog + .backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background:rgba(0, 0, 0, 0.5);
+}
+
+.card {
+    text-align: center;
+    border-color: rgba(255, 255, 255, 0.10);
+    border-width: 2px;
+    border-radius: 5px;
+    border-style: solid;
+    padding-top: 30px;
+}
+
+.card-header {
+    padding-left: min(6vw, 100px);
+    padding-right: min(6vw, 100px);
+}
+
+.card-action {
+    border-color: rgba(255, 255, 255, 0.10);
+    border-width: 2px;
+    border-radius: 5px;
+    border-style: solid;
+    padding: 50px;
+    display: flex;
+}
+
+.card-action .card-title {
+    font-weight: 400;
+    margin: 0px;
+}
+
+.card-action p {
+    margin: 8px 0px;
+}
+
+.card-action a {
+    color: white;
+}
+
+.card-icon {
+    height: 50px;
+    width: 50px;
+}
+
+.card-thumbnail {
+    width: 300px;
+    max-width: none;
+}
+
+.ti {
+    font-size: large;
+}
+
+/* 
+    Makes a <input> look like a heading.
+    Used in Relay Actions editor for now.
+*/
+.label-heading {
+    background-color: transparent;
+    font-size: 1.5em;
+    font-weight: 600;
+    padding: 0px;
+    margin-bottom: 8px;
+    box-shadow: none !important;
+    margin-top: 24px;
+}
+
+/* 
+    Makes a <input> look like a description.
+    Used in Relay Actions editor for now.
+*/
+.label-description {
+    background-color: transparent;
+    padding: 0px;
+    box-shadow: none !important;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.full {
+    width: 100%;
+}
+
+a.block {
+    display: block; 
+    margin-top: 6px;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.section {
+    margin: 0px;
+    margin-top: 10px;
+    border-bottom-style: solid;
+    border-bottom-width: 1.7px;
+    padding-bottom: 10px;
+    border-bottom-color: #ffffff14;
+}
+
+.pack-icon {
+    border-radius: 10px;
+    max-width: 120px;
+    max-height: 120px;
+    box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.20);
+    width: 120px;
+    height: 120px;
+}
+
+.pack-icon.small {
+    width: 96px;
+    height: 96px;
+}
+
+.server-icon {
+    border-radius: 10px;
+    max-width: 40px;
+    max-height: 40px;
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+.user-icon {
+    border-radius: 100%;
+    max-width: 40px;
+    max-height: 40px;
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+.user-icon.small {
+    max-width: 30px;
+    max-height: 30px;
+    height: 30px;
+    width: 30px;
+}
+
+.metadata-view {
+    display: flex;
+}
+
+.metadata-view > * {
+    width: 100%;
+    text-align: center;
+}
+
+form {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.field-description {
+    font-size: smaller;
+    display: block;
+    margin-top: 10px;
+}
+
+*[relay-attribute="field"], *[relay-attribute="mapping"] {
+    display: flex;
+    /* align-items: baseline; */
+}
+
+*[relay-attribute="container"] {
+    display: block;
+}
+
+*[relay-attribute="parameter"] {
+    padding-bottom: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 18px;
+    background: #131313;
+    display: flex;
+    transition: all .3s;
+}
+
+*[relay-attribute="parameter"].required {
+    background: #201212;
+}
+
+*[relay-attribute="parameter"]:hover {
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px #0000007d;
+    background: #222222;
+    position: relative;
+}
+
+*[relay-attribute="parameter"].required:hover {
+    background: #351e1e;
+}
+
+div[hide-optional] *[relay-attribute="parameter"]:not(.required) {
+    display: none;
+}
+
+*[relay-attribute="parameter"]:nth-last-child(2) {
+    box-shadow: 0px 4px 10px #0000007d;
+}
+
+*[relay-attribute="parameter"] > label {
+    flex-grow: 1; 
+    padding-right: min(3vw, 50px);
+}
+
+*[relay-attribute="parameter"] > label samp {
+    all: revert;
+    font-size: 17px;
+}
+
+input, select {
+    width: min(13vw, 150px);
+}
+
+.limit-desktop {
+    max-width: 50vw;
+}
+
+/* Enable wrapping on mobile */
+@media (min-width: 0px) and (max-width: 800px) {
+    *[relay-attribute="parameter"] {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    *[relay-attribute="parameter"] > label {
+        padding-right: 0px;
+        width: 100%;
+    }
+
+    *[relay-attribute="parameter"] > *[relay-attribute="container"] {
+        margin-top: 10px;
+    }
+
+    *[relay-attribute="parameter"]:hover {
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 30px;
+        padding-right: 30px;
+        border-radius: 0px;
+    }
+
+    form {
+        overflow-x: auto;
+    }
+
+    input, select {
+        width: 100%;
+    }
+
+    *[relay-attribute="parameter"] > label > div {
+        flex-wrap: wrap;
+    }
+
+    html[page="actions_blockly"] .logo-text {
+        display: none;
+    }
+
+    .card-action {
+        flex-wrap: wrap;
+    }
+
+    .card-thumbnail {
+        margin-top: 30px;
+    }
+
+    .limit-desktop {
+        max-width: none;
+    }
+
+    .metadata-view {
+        flex-wrap: wrap;
+    }
+
+    .hide-small {
+        display: none;
+    }
+
+    dialog {
+        height: auto;
+        width: auto;
+        padding: 0px;
+    }
+}
+
+.form-button {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(158, 192, 255);
+    color: #000;
+    display: inline-flex;
+}
+
+.form-button:hover {
+    background-color: rgb(87, 146, 255);
+    color: #000;
+}
+
+.hero-button {
+    width: 100%;
+    background-color: rgb(158, 192, 255);
+    color: #000;
+    display: inline-flex;
+    margin: 10px 80px 30px 80px;
+}
+
+.hero-button:hover {
+    background-color: rgb(104, 128, 172);
+    color: #000;
+    display: inline-flex;
+}
+
+.field-type {
+    opacity: 0.7;
+}
+
+.element-button {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 3px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color .5s;
+}
+
+.element-button-second {
+    background: transparent;
+}
+
+.tour-progress {
+    display: flex;
+    margin: 0px 0px 15px 0px;
+}
+
+.tour-progress > .tour-step {
+    margin: auto;
+}
+
+.tour-progress > .tour-bar {
+    background-color: #1b1b1b;
+    border-radius: 15px;
+    height: 10px;
+    margin: auto 20px auto 20px;
+    flex-grow: 1;
+    overflow: clip;
+}
+
+.tour-progress > .tour-bar > .tour-bar-filled {
+    background-color: #fff;
+    height: 100%;
+    border-radius: 15px;
+    transition: width 1s;
+}
+
+.button-tabs > .element-button {
+    background-color: transparent;
+    opacity: 0.6;
+}
+
+.button-tabs > .element-button[relay-ui="selected"] {
+    border-bottom: 2px white solid;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    opacity: 1;
+}
+
+.button-tabs > .element-button[relay-ui="none"] {
+    display: none;
+}
+
+.dialog-content {
+    overflow-y: auto;
+    max-height: 500px;
+    padding: 3px;
+}
+
+.dialog-content div[relay-attribute="field"] > input, 
+.dialog-content div[relay-attribute="field"] > select, 
+.dialog-content div[relay-attribute="mapping"],
+.dialog-content div[relay-attribute="mapping"] > input,
+.dialog-content div[relay-attribute="mapping"] > select {
+    width: 100%;
+}
+
+.log-drain {
+    background-color: #00000052;
+    overflow-y: scroll;
+}
+
+.log-content {
+    font-family: monospace, monospace !important;
+    margin: 0px; 
+    padding: 15px 15px;
+    font-size: smaller;
+}
+
+.close-button {
+    background-color: transparent;
+    margin-top: -8px;
+    margin-right: -15px;
+    float: right;
+}
+
+.required-label {
+    color: #ff5842;
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+}
+
+.preview-notice {
+    background-color: #fffc4236;
+    border-color: #fffc4236;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    color: #fff242;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    display: block;
+}
+
+.preview-label {
+    background-color: #fffc4236;
+    border-color: #fffc4236;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    color: #fff242;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    font-size: small;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+abbr {
+    text-decoration: none;
+}
+
+.product-icon {
+    border-radius: 100%;
+    max-width: 25px;
+    max-height: 25px;
+    height: 25px;
+    width: 25px;
+    vertical-align: middle;
+}
+
+div.error {
+    background-color: #ff584236;
+    border-color: #ff584236;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    color: #ff5842;
+    text-align: left;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+div.error > button {
+    margin-top: 20px; 
+    background-color: #ff584299;
+}
+
+div.error-success {
+    background-color: #42ff5536;
+    border-color: #42ff5536;
+    color: #52ff42;
+}
+
+div.error-success > button {
+    margin-top: 20px; 
+    background-color: #4fff4299;
+}
+
+body {
+    max-width: 55rem; 
+    margin: 20px auto; 
+    padding: 0 10px;
+    line-height: 1.6;
+    font-family: 'Inter',system-ui,-apple-system,'BlinkMacSystemFont','Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue','Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;
+}
+
+/* Apply custom scrollbar to <div>s too. */
+div {
+    scrollbar-color: var(--scrollbar-thumb) var(--background-body);
+    scrollbar-width: thin;
+}
+
+html[page="actions_blockly"], html[page="actions_blockly"] body,
+html[page="actions_logs"], html[page="actions_logs"] body,
+html[page="home"], html[page="home"] body,
+html[mode="full"], html[mode="full"] body {
+    height: 100%;
+    max-width: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+    display: inline-flex;
+}
+
+.logo-text {
+    margin-left: 20px;
+    font-size: large;
+    border-left: #ffffff30;
+    border-left-style: none;
+    border-left-width: medium;
+    border-left-width: 2px;
+    border-left-style: solid;
+    padding-left: 20px;
+    white-space: nowrap;
+}
+
+.logo-text ti {
+    font-size: larger;
+}
+
+@keyframes opacityAnimation {
+    from {
+        opacity: 0.3;
+    }
+    to {
+        opacity: 1.0;
+    }
+}
+
+@keyframes fullOpacityAnimation {
+    from {
+        opacity: 0.0;
+    }
+    to {
+        opacity: 1.0;
+    }
+}
+
+.progress.error {
+    color: #be5757;
+}
+
+.progress.done {
+    color: #5abe57;
+}
+
+.progress.last-save {
+    color: rgb(65, 65, 65);
+}
+
+/* Expand 100% blockly. */
+html[page="actions_blockly"] #workspace {
+    flex: 100%
+}
+
+html[page="actions_blockly"] #workspace-loading,
+html[page="home"] #main,
+html[mode="full"] #main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+}
+
+.entity-bubble {
+    display: flex;
+    float: right;
+    border-radius: 30px;
+    background: transparent;
+}
+
+.entity-bubble.sharp {
+    border-radius: 10px;
+}
+
+.entity-bubble .entity-content {
+    color: #000;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    height: 0px;
+    width: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    max-block-size: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.entity-bubble:hover[animation="1"] {
+    animation-name: expandbubble;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+    -webkit-animation-name: expandbubble;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: normal;
+    -webkit-animation-fill-mode: both;
+}
+
+.entity-bubble:not(:hover)[animation="1"] {
+    animation-name: minbubble;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+    -webkit-animation-name: minbubble;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: normal;
+    -webkit-animation-fill-mode: both;
+}
+
+.entity-bubble:hover[animation="1"] .entity-content {
+    animation-name: expandbubbletext;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+    -webkit-animation-name: expandbubbletext;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: normal;
+    -webkit-animation-fill-mode: both;
+}
+
+.entity-bubble:not(:hover)[animation="1"] .entity-content {
+    animation-name: minbubbletext;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+    -webkit-animation-name: minbubbletext;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: normal;
+    -webkit-animation-fill-mode: both;
+}
+
+@keyframes expandbubble {
+    0% {
+        width: 40px;
+        background: transparent;
+        box-shadow: 0px 0px 0px 0px #fff;
+    }
+    20% {
+        box-shadow: 0px 0px 0px 4px #fff;
+        width: 40px;
+        background: #fff;
+    }
+    100% {
+        box-shadow: 0px 0px 0px 4px #fff;
+        width: 150px;
+        background: #fff;
+    }
+}
+
+@keyframes minbubble {
+    0% {
+        box-shadow: 0px 0px 0px 4px #fff;
+        width: 150px;
+        background: #fff;
+    }
+    80% {
+        box-shadow: 0px 0px 0px 4px #fff;
+        width: 40px;
+        background: #fff;
+    }
+    100% {
+        width: 40px;
+        background: transparent;
+        box-shadow: 0px 0px 0px 0px #fff;
+    }
+}
+
+@keyframes minbubbletext {
+    0% {
+        height: 40px;
+        width: 120px;
+        padding-left: 10px;
+        padding-right: 10px;
+        max-block-size: 120px;
+    }
+    100% {
+        height: 0px;
+        width: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        max-block-size: 0px;
+    }
+}
+
+@keyframes expandbubbletext {
+    0% {
+        height: 0px;
+        width: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        max-block-size: 0px;
+    }
+    100% {
+        height: 40px;
+        width: 120px;
+        padding-left: 10px;
+        padding-right: 10px;
+        max-block-size: 120px;
+    }
+}
+
+.shimmer {
+    background: #fff;
+    background-image: linear-gradient(to right, #fff 0%, #5e5e5e 20%, #464646 40%, #fff 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 104px;
+    position: relative; 
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards; 
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: placeholderShimmer;
+    -webkit-animation-name: placeholderShimmer;
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+}
+
+.shimmer-save {
+    background: #161616;
+    background-image: linear-gradient(to right, #161616 0%, #252525 20%, #202020 50%, #161616 60%);
+    animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+}
+
+.spin {
+    -webkit-animation: spin 2s linear infinite;
+    -moz-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-moz-keyframes placeholderShimmer {
+    0% { background-position: -468px 0; }
+    100% { background-position: 468px 0; }
+}
+
+@-webkit-keyframes placeholderShimmer {
+    0% { background-position: -468px 0; }
+    100% { background-position: 468px 0; }
+}
+
+@keyframes placeholderShimmer {
+    0% { background-position: -468px 0; }
+    100% { background-position: 468px 0; }
+}
+
+@-moz-keyframes spin { 
+    100% { -moz-transform: rotate(360deg); } 
+}
+
+@-webkit-keyframes spin { 
+    100% { -webkit-transform: rotate(360deg); } 
+}
+
+@keyframes spin { 
+    100% { 
+        -webkit-transform: rotate(360deg); 
+        transform:rotate(360deg); 
+    } 
+}
+
+.toastify {
+    box-shadow: none;/* 0 3px 6px -1px rgba(0,0,0,.12),0 10px 36px -4px rgba(255, 255, 255, 0.22) !important */;
+}
+
+.toastify-avatar {
+    width: 2em;
+    height: 2em;
+    margin: -2px 15px -9px 0px;
+    margin-top: -2px;
+    margin-right: 15px;
+    margin-bottom: -9px;
+    margin-left: 0px;
+    border-radius: 20px;
+}
+
+.panel {
+    border-radius: 15px; 
+    background-color: #131313;
+    overflow: clip;
+}
+
+.panel .panel-item {
+    transition: background-color .3s;
+    background-color: transparent;
+    display: flex; 
+    align-items: center; 
+    padding: 15px 20px 15px 20px;
+}
+
+.panel .panel-item:hover {
+    transition: background-color .3s;
+    background-color: #ffffff0a;
+}
+
+.panel .panel-item .panel-content {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    word-wrap: anywhere;
+}
+
+.panel .panel-item .panel-action {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.panel .panel-item .panel-action button {
+    margin-bottom: 0px;
+}
+
+.panel .panel-item .panel-content img.panel-avatar {
+    margin-right: 20px; 
+    border-radius: 40px;
+    height: 48px;
+    width: 48px;
+}
+
+/*
+.panel .panel-item:not(:last-child) {
+    border-bottom: 2px solid #0c0c0c;
+}
+*/

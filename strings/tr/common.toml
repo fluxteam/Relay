@@ -1,0 +1,330 @@
+[strings.common]
+cancel = "İptal"
+install = "Kur"
+uninstall = "Kaldır"
+update = "Güncelle"
+repair = "Onar"
+disable = "Devre Dışı Bırak"
+enable = "Etkinleştir"
+author = "Yapımcı"
+repository = "Depo"
+latest = "En son"
+current = "Şu anki"
+creation_date = "Oluşturulma Tarihi"
+unspecified = "Belirtilmemiş"
+soon = "Yakında"
+features = "Özellikler"
+version = "Sürüm"
+go = "Git"
+ok = "Tamam"
+string = "Metin"
+number = "Sayı"
+boolean = "Boole"
+channel = "Kanal"
+role = "Rol"
+choice = "Seçim"
+mapping = "Eşleşme"
+list = "Liste"
+none = "Yok"
+empty = "Boş"
+try_again = "Yeniden Dene"
+verified = "Onaylı"
+edit = "Düzenle"
+delete = "Sil"
+create = "Oluştur"
+unnamed = "Adsız"
+id = "ID"
+beta = "Beta"
+true = "Evet"
+false = "Hayır"
+documentation = "Dökümantasyon"
+export = "Dışa Aktar"
+save = "Kaydet"
+settings = "Ayarlar"
+info = "Bilgi"
+description = "Açıklama"
+link = "Bağlantı"
+name = "İsim"
+learn_more = "Daha fazla bilgi"
+launch_workspace = "Çalışma Alanı'nı Aç"
+next = "İleri"
+close = "Kapat"
+previous = "Geri"
+help = "Yardım"
+continue = "Devam et"
+invite = "Davet et"
+launch = "Aç"
+size = "Boyut"
+flag = "Raporla"
+
+
+[strings.actions]
+workspace_description = "Sunucunuza özel çalışma alanınıza gitmek için tuşa tıklayın."
+auto_scroll = "Otomatik kaydır açık"
+manual_scroll = "Manuel kaydır açık"
+log_clear = "Kayıtları temizle"
+log_state_empty_title = "Kayıt yok"
+log_state_empty_text = "Olay akışlarınız çalıştırıldığında, ne olduğu hakkında sizi bilgilendirmek için buraya kayıt ekleyeceğiz."
+log_error_block = "HATA"
+log_success_block = "BAŞARILI"
+log_info_block = "BİLGİ"
+change_server = "Sunucuyu değiştir"
+servers = "Sunucular"
+user_joined = "{0} katıldı"
+user_left = "{0} ayrıldı"
+participants = "Katılımcılar"
+error_socket_disconnected = "Bağlantı koptu. Veri kaybını önlemek için bir yere ayrılmayın."
+socket_connected = "Bağlantı sağlandı."
+synced_blocks = "Bloklar diğer kullanıcılar ile senkronize edildi."
+error_discord_commands = "Uygulama komutları Discord'a kaydedilemedi. (büyük ihtimalle hız sınırından dolayı)"
+
+
+[strings.log]
+action_edited = '"{0}" (`{1}`) isimli olay akışı, "{2}" (`{3}`) tarafından **düzenlendi**.'
+action_deleted = '"{0}" (`{1}`) isimli olay akışı, "{2}" (`{3}`) tarafından **silindi**.'
+
+
+[strings.package]
+edit_installation = "Kurulumu Düzenle"
+create_package = "Kendi paketinizi nasıl oluşturacağınızı öğrenin"
+timeout = "Zaman aşımı"
+incognito = "Gizli modda yönetilemez"
+installation = "Paketin ayarlarını girmek için bağlantıyı tarayıcınızda açın."
+uninstalled_info = "`{0}` paketi sunucudan başarıyla kaldırıldı."
+install_params = "Paketi kurarken girilen parameterler:"
+
+
+[strings.error.missing_permissions]
+title = "İzinler yetersiz"
+description = "Bu işlemi gerçekleştirebilmek için gereken izinlere sahip olmanız gerekiyor."
+
+[strings.error.package_not_found]
+title = "Paket bulunamadı"
+description = "{0} isminde bir paket bulunamadı."
+
+[strings.error.invalid_server]
+title = "Bilinmeyen sunucu"
+description = "Böyle bir sunucu yok, Relay sunucuya eklenmemiş veya bu sunucuda değilsiniz."
+
+[strings.error.not_authorized]
+title = "Yetkilendirme yok"
+description = "Bu işlemi gerçekleştirmek için ilk önce giriş yapmanız gerekiyor."
+
+[strings.error.managed_action]
+title = "Yönetilemez"
+description = "Bu olay akışı, Relay Paketlerinden biri tarafından yönetiliyor, bu yüzden elinizle düzenleyemezsiniz."
+
+[strings.error.unexpected_error]
+title = "Bilinmeyen hata"
+description = "Neler olduğu hakkında bir fikrimiz yok."
+
+[strings.error.invalid_source]
+title = "Kaynak geçersiz"
+description = "Kaynak bulunamıyor, kaynak dosyaları geçersiz veya gizli olduğundan ulaşılamıyor."
+
+
+[strings.web]
+no_script = "Lütfen JavaScript'inizi etkinleştirin. Bu site JavaScript olmadan çalışamaz."
+browser_not_supported = "Bu tarayıcı desteklenmemektedir. Lütfen tarayıcınızı değiştirin veya güncelleyin."
+something_wrong = "Burada yanlış olan bazı şeyler var:"
+missing_required_value = "{0} parametresi gerekli."
+has_no_item = "{0} için en az bir öğe gerekiyor."
+invalid_value = "{0} geçersiz bir değere sahip."
+value_too_long = "{0} çok uzun bir değere (> 300) sahip."
+done = "Tamamlandı!"
+oops = "Eyvah"
+not_you = "Sen değil misin?"
+installing_on = "Hedef sunucu"
+required_parameter = "Zorunlu"
+completed = "İşlem başarıyla tamamlandı, şimdi sayfayı kapatabilirsiniz."
+action_title = "Olay akışı adı"
+action_description = "Bu olay akışı bir açıklama belirtin..."
+action_saved = "Olay akışı başarıyla kaydedildi!"
+package_installed_already = "Bu paket zaten sunucuya kurulmuş."
+custom_value_title = "Özel değer"
+custom_value_description_1 = "Özel değerler, değerin içinde yeni değerler oluşturmanızı ve değere istediğiniz tipi ayarlamaya olanak sağlar."
+custom_value_description_2 = "Eğer aşağıdaki değer tiplerinden birini seçerseniz, önceki değer ve değerin içindeki her şey silinir."
+custom_value_link = "Özel değerler hakkında yardım almak için buraya göz atabilirsiniz."
+save_starting = "Kaydediliyor..."
+save_done = "Kaydedildi!"
+save_error = "Hata!"
+switch_account = "Hesap değiştir"
+sign_in = "Giriş yap"
+select_server = "Sunucu seçin"
+webhook_copied = "Webhook URL'si kopyalandı."
+id_copied = "Olay akışı ID'si kopyalandı."
+not_eligible = "Uygun değil"
+all_parameters = "Tümü"
+only_required = "Zorunlu"
+invite = "Relay sunucunuzda yok mu?"
+install_overview = """\
+    Bu paketi Relay'e yükleyerek kendi sunucunuzda Relay'e yeni özellikler ve komutlar ekleyin. \
+    Paketi kurmak için yetkiye sahip olduğunuz, botla ortak paylaştığınız bir sunucu seçin.
+    """
+overview_intro = """\
+    Relay ile kendi programlanabilir botunuza sahip olun. Bu paket gibi diğer insanların
+    paylaştığı paketleri birkaç tıkla sunucunuza yükleyin.
+    """
+overview_intro_tos = "Hizmet Şartlarını" # unused
+overview_intro_pyp = "Gizlilik Politikasını" # unused
+blocks_selected = "{0} blok seçili. Kaydetmek için tıklayın."
+report_title = "Paketi raporla: {0}"
+report_body = "Rapor için ek detayları buraya girebilirsiniz."
+report_package_name = "Paket adı"
+report_package_version = "Paket sürümü"
+report_language = "Dil"
+progress_stage_1 = "Bağlanılıyor..."
+progress_stage_2 = "Çalışma alanı oluşturuluyor..."
+progress_stage_3 = "Cilalanıyor..."
+settings_saved = "Ayarlar kaydedildi!"
+exit_prompt = "Kaydedilmemiş değişiklikleriniz var, yine de çıkmak istediğinizden emin misiniz?"
+progress_failed = "Bağlantı kurulamadı. Lütfen tekrar deneyin."
+start_tutorial = "Eğitimi başlat"
+no_thanks = "Hayır, teşekkürler"
+corrupted_blocks = "Bloklar bozuk. Daha fazla bilgi için iletişime geçin."
+
+
+[strings.web.oauth]
+no_redirect = "Yönlendirme bağlantısı belirtilmemiş."
+cancelled = "Yetkilendirme iptal edildi."
+missing_identifier = "İstek başlıklarında tanımlayıcı eksik."
+tampering_detected = "Bağlantının kurcalandığı tespit edildi."
+error_exchange = "Jeton takası yaparken bilinmeyen bir hata oluştu."
+
+
+[strings.changelog.splash]
+title = "Relay'e hoş geldiniz!"
+description = "Herhangi bir olay olduğunda istediğiniz eylemleri gerçekleştiren, programlanabilir bir bot. Karşınızda Relay. Hadi birkaç adımda Relay'i nasıl kullanmaya başlayacağınızı anlatalım."
+
+[strings.changelog.no_code]
+title = "Kod yoksa, sorun da yok"
+description = "Burası sizin çalışma alanınız, blokları sürükleyip bırakarak ve bağlayarak yapılacak eylemleri programlayabilirsiniz. Biz arka planda blokları koda çeviriyoruz, siz orasını merak etmeyin."
+
+[strings.changelog.collab]
+title = "Ortak çalışın"
+description = "Gerçek zamanlı olarak diğer kullanıcıların düzenlemelerine tanık olun! Yaptığınız düzenlemeler, sizinle aynı sunucuyu düzenleyen diğer kullanıcılarla paylaşılır. Onların yaptıkları da sizin ekranınızda görünür."
+
+[strings.changelog.new]
+title = "Yeni özellikler geldi!"
+description = "Siz buralarda yokken yeni özellikler ekledik, hadi bu yeni gelen özellikleri ve değişen şeylere göz atalım!"
+
+[strings.changelog.interactions]
+title = "Sonraki seviye: Etkileşimler"
+description = "Mesaj Bileşenleri, Bağlam Menüleri ve Slaş Komutlarını barındıran Etkileşim özelliklerini Relay tam olarak destekler! Her zaman olduğu gibi blokları kullanarak başlamanız yeterli."
+
+[strings.changelog.deploy]
+title = "Bloklarınızı yayınlayın"
+description = "Bloklarınızı dışa aktararak GitHub depolarınıza yükleyebilirsiniz, ardından bir Relay tuşu ekleyerek, diğer insanların kendi deponuzdan blok eklemesine olanak sağlayabilirsiniz. Üstelik herhangi bir ayar gerekmeden."
+
+[strings.changelog.save]
+title = "Değişiklikler, anında"
+description = "Yaptıklarınızı kaydettiğinizde bu değişiklikleri anında Relay'de görürsünüz. Bir bloğu yanlış eklediyseniz veya yazım hatası yaptıysanız, istediğiniz kadar tekrar ve tekrar kaydedebilirsiniz."
+
+[strings.changelog.debug]
+title = "Hataları yakalayın"
+description = "Bloklarınız zaman zaman hata ile sonuçlanabilir. Böyle bir durumda neden hata verdiğini öğrenmek çok kolay. Bir dinleyiciye sağ tıklayın ve kayıtları açın. Canlı olarak nelerin olup bittiğinden haberdar olun."
+
+[strings.changelog.definitions]
+title = "Değişkenler ve Fonksiyonlar"
+description = "Tekrarlanan kodu önlemek için \"Fonksiyon\" oluşturabilir ve diğer olay akışlarında da kalıcı olacak değerler saklamak için \"Genel değişken\"leri kullanabilirsiniz. İkisi de \"Tanımlar\" kategorisinde."
+
+[strings.changelog.finish]
+title = "Hazırsınız!"
+description = "Artık Relay'i kullanmaya hazırsınız. Yeni bir şey yayınladığımızda sizi haberdar edeceğiz. Unutmayın ki bazı özellikler hatalar içerebilir ve bunları bildirmeyi unutmayın ki en kısa sürede düzeltebilelim!"
+
+[strings.changelog.log_upgrade]
+title = "Güncellenmiş kayıtlar"
+description = "Artık kayıt görüntüleyicileri yeni bir bağlantı kurmuyor, var olanı kullanıyor. Bununla beraber artık kayıtlar tek seferliğine sadece bir kişi için gözükmek yerine o an bağlı olan herkese gösteriliyor."
+
+[strings.changelog.loop_block]
+title = "Döngü bloğu"
+description = "Birden fazla işi belirtilen listedeki eleman sayısı kadar tekrarlar. Çalışan bir döngünün içindeki elemanı almak için \"döngü elemanı\" bloğunu kullanın. Döngü elemanı bloğu, üstteki döngünün elemanını verir."
+
+
+[strings.tutorial]
+tutorial_0 = """\
+    Relay'e hoş geldiniz!
+    
+    Birkaç adımda neler yapabileceğinizi keşfetmek için eğitimi başlatabilir, \ 
+    sıkıştığınız yerde bilgi almak için dökümantasyona bakabilir veya kafanıza göre takılabilirsiniz. 
+    """
+tutorial_1 = """\
+    Bir eylemin gerçekleşmesi için onu tetikleyecek bir şeyin olması gerekir. Relay için de durum aynı. Herhangi bir X \
+    durumunda Y eylemini gerçekleştirmek istiyorsak, ilk önce o X durumunu belirtmemiz gerekiyor.
+
+    [['Akış' kategorisinden 'olayını dinle' bloğunu, çalışma alanınıza sürükleyip bırakın.]]
+    """
+tutorial_2 = """\
+    Bu sarı renkli bloklar, belirli bir eylemin yapılıp yapılmadığını kontrol ettiği için bu işleme 'dinleme' diyoruz, \
+    bu işlemi üstelenen bloklara da 'dinleyici' deniliyor. Yani az önce bir 'dinleyici' bloğu eklemiş oldunuz.
+
+    Şimdi ise birisi '{0}' dediğinde Relay'in '{1}' demesini istiyoruz, bu tarz kontrolleri gerçekleştirmek için \
+    'eğer' isimli bloğa ihtiyacımız var. [[Bloğu bulup, dinleyici bloğunun içine yerleştirin.]]
+    """
+tutorial_2_o1 = "Merhaba"
+tutorial_2_o2 = "Dünya"
+tutorial_3 = """\
+    Bu 'eğer' bloğunda 2 giriş bulunuyor. Üstteki küçük girişe, kontrol etmek istediğimiz şeyi, diğer girişe de kontrol edilecek \
+    şey olumlu bir yanıt verdikten sonra yapılacaklar eklenir. Kontrol etmek istediğimiz şey olumlu bir yanıt vermez ise \
+    'eğer' bloğunun içine eklenen eylemler çalıştırılmaz. 'eğer' bloğunun dışındaki bloklar, normal şekilde çalışmaya devam ederler.
+
+    Dışarıdan gelen bir mesajın içeriğini, kendi istediğimiz bir değer ile karşılaştırmak için "=" (eşittir) bloğuna ihtiyacımız var.
+    Karşılaştırma sonucunda, işlemin doğru olduğunu belirten 'evet' veya 'hayır' olmak üzere iki değerden birini alırsınız. 'Evet' değeri,
+    olumlu bir değer olduğu için [[bu bloğu 'eğer' bloğuna ekleyebiliriz]], o zaman sıra sizde.
+    """
+
+
+[strings.settings.appearance]
+title = "Görünüm"
+
+[strings.settings.appearance.hide_grid]
+title = "Kılavuzu gizle"
+description = "Çalışma alanın arkasındaki noktalı kılavuzu gizleyin."
+
+[strings.settings.appearance.snap_grid]
+title = "Kılavuza yapıştır"
+description = "Bloklar kılavuz hatlarına göre hizalanır. Bu ayarın düzgün çalışabilmesi için önce kılavuzun açık olması gerekir."
+
+[strings.settings.appearance.renderer]
+title = "Blok işleyicisi"
+description = "Blokların ekranda nasıl gözüktüğünü kontrol eden işleyiciyi değiştirin. Kısacası, blokların görünüşünü değiştirir."
+items = { thrasos = "Varsayılan", geras = "Blockly", zelos = "Scratch" }
+
+[strings.settings.appearance.horizontal]
+title = "Yatay kategoriler"
+description = "Kategorileri solda dikey olarak göstermek yerine kategorileri ekranın altına yatay olacak şekilde koy. Eni boyundan küçük olan ekranlar (yani telefonlar) için idealdir."
+
+[strings.settings.behavior]
+title = "Davranış"
+
+[strings.settings.behavior.warnings]
+title = "Uyarıları etkinleştir"
+description = "Sık yapılan hataları önlemek için, olası yanlış eylemlerde blokların üstünde uyarılar göster."
+
+[strings.settings.behavior.enable_sounds]
+title = "Sesleri etkinleştir"
+description = "Blokları birbirine bağlamak veya silmek gibi eylemler gerçekleştirildiğinde ses çıkar."
+
+[strings.settings.behavior.keep_toolbox_open]
+title = "Blok çekmecesini açık tut"
+description = "Çalışma alanına yeni bir blok eklerken blok çekmecesini açık tut. Her defasında kategoriyi açmak istemiyorsanız faydalı olabilir."
+
+[strings.settings.behavior.advanced_blocks]
+title = "Gelişmiş bloklar"
+description = "Genellikle ortalama bir kullanıcının ihtiyacı olmayan, geliştiriciler için faydalı olabilecek ek blokları gösterir. Daha önceden çalışma alanına eklenmiş olan gelişmiş bloklar bu ayardan etkilenmez."
+
+[strings.settings.behavior.zoom_with_wheel]
+title = "Fare tekerleği ile yakınlaştır/uzaklaştır"
+description = "Fare tekerleğini yukarı veya aşağı gezinmek için değil, çalışma alanını yakınlaştırmak veya uzaklaştırmak için kullan."
+
+[strings.settings.behavior.finished_tutorial]
+title = "Eğitimi tamamlandı olarak kabul et"
+description = "Relay'i ilk kez kullanan kullanıcıların gösterilen eğitimi açar veya kapatır. Bu ayar, eğitimi tamamladığınızda veya eğitimi atladığınızda otomatik olarak işaretlenir. Fakat bunu kapatıp tekrardan eğitimi görebilirsiniz."
+
+[strings.settings.other]
+title = "Diğer"
+
+[strings.settings.other.predisposition]
+title = "Yatkınlık grubu"
+description = "Tamamen kanıtlanmış olmasa da, uzmanlar her grubun farklı güçlere sahip olabileceğini söylüyor. Bu 'güçlerin' şu anki listesine sahip değiliz, çünkü şu an bile değişmiş olabilir."
+items = { 0 = "Amethyst", 1 = "Roselite", 2 = "Galaxite" }

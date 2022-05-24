@@ -1,0 +1,126 @@
+site_name: Relay
+use_directory_urls: false
+nav:
+  - index.md
+  - packages.md
+  - actions.md
+  - API:
+    - api/index.md
+    - api/packages.md
+    - Actions:
+      - api/actions/index.md
+      - api/actions/entities.md
+      - api/actions/events.md
+      - api/actions/discord.md
+      - Dictionary: https://pyconduit.ysfchn.com/blocks/dictionary
+      - Lists: https://pyconduit.ysfchn.com/blocks/lists
+      - Logic: https://pyconduit.ysfchn.com/blocks/logic
+      - Math: https://pyconduit.ysfchn.com/blocks/math
+      - Text: https://pyconduit.ysfchn.com/blocks/text
+      - Variable: https://pyconduit.ysfchn.com/blocks/variable
+  - changelog/index.md
+  - About:
+    - about/index.md
+    - about/faq.md
+    - about/libraries.md
+theme: 
+  name: material
+  logo: assets/relay_logo.png
+  custom_dir: docs/overrides
+  font:
+    text: Inter
+    code: JetBrains Mono
+  language: en
+  favicon: assets/icon-32x32.png
+  features:
+    - navigation.indexes
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - toc.integrate
+    - header.autohide
+    - search.suggest
+    - navigation.top
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: octicons/sun-16
+        name: Switch to Light Mode
+    - scheme: default
+      primary: white
+      accent: deep purple
+      toggle:
+        icon: octicons/moon-16
+        name: Switch to Dark Mode
+extra_css:
+  - assets/extra/styles.css
+extra_javascript:
+  - assets/extra/adaptive_cards.js
+plugins:
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          selection:
+            inherited_members: true
+            filters:
+              - "!__json_encoder__"
+              - "!^_[^_]"
+              # - "!__init__"
+          rendering:
+            show_root_heading: true
+            heading_level: 1
+            show_root_toc_entry: true
+            show_root_full_path: false
+            show_source: false
+            show_bases: false
+  - autorefs
+  - search
+  - i18n:
+      default_language: en
+      languages:
+        tr: Türkçe
+      nav_translations:
+        tr:
+          Home: Ana Sayfa
+          API: API
+          About: Hakkında
+          Changelog: Yenilikler
+          Packages: Paketler
+markdown_extensions:
+  - admonition
+  - footnotes
+  - attr_list
+  - abbr
+  - pymdownx.inlinehilite
+  - pymdownx.highlight
+  - meta
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.snippets:
+      base_path: docs/misc
+  - pymdownx.tabbed:
+      alternate_style: true
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - toc:
+      permalink: true
+extra:
+  alternate:
+    - name: English (EN)
+      link: ./
+      lang: en
+      
+    - name: Türkçe (TR)
+      link: tr
+      lang: tr
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/fluxteam
+  # That's because footer is replaced with overrides/main.html, "Made with Mkdocs" text is included with override.
+  # So enabling this will make the "Made with Mkdocs" text appear twice.
+  generator: false

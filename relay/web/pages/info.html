@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <style>
+        body, html {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+            max-width: none;
+        }
+
+        body > div[id="form"] {
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0px;
+            border: 0px;
+        }
+
+        .child {
+            display: block;
+            width: 50vw;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="child">
+            <i class="ti ti-{{ icon or 'octagon' }}" style="font-size: 3rem"></i>
+            <h2>{{ title }}</h2>
+            {% if secure %}
+                <p>{{ description|safe }}</p>
+            {% else %}
+                <p>{{ description }}</p>
+            {% endif %}
+            {% if links %}
+                {% for link_name, link_href in links.items() %}
+                    <br><a href="{{ link_href }}">{{ link_name }}</a>
+                {% endfor %}
+            {% endif %}
+    </div>
+{% endblock %}

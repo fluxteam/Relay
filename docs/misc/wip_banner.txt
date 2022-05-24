@@ -1,0 +1,4 @@
+<div style="padding: 15px 20px 15px 20px; color: #ff5656; border-radius: 12px; border: 2px solid #ff46464f; display: flex; align-items: center; flex-wrap: wrap;">
+    <span style="flex-grow: 1;">English documentation is not completed. Please visit Turkish documentation instead.</span>
+    <a href="/tr">Switch language</a>
+</div>
